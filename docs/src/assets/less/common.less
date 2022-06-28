@@ -1,0 +1,142 @@
+@import './var.less';
+
+
+
+html {
+  height: 100%;
+  font-size: 16px;
+}
+
+body {
+  margin: auto;
+  color: var(--kenote-text);
+  font-family: var(--font-family);
+  background-color: var(--kenote-bg);
+}
+
+body, #app {
+  
+  height: inherit;
+}
+
+.markdown-body {
+  margin: 1.5rem;
+
+  h1, h2 {
+    border-bottom: none;
+  }
+
+  table {
+    display: table !important;
+    color: var(--kenote-text);
+    // opacity: .9;
+    font-size: 14px;
+    // max-width: 100vw;
+
+    tr {
+      background-color: inherit;
+      border-top: 1px solid var(--kenote-bc);
+
+      &:nth-child(2n) {
+        background-color: inherit;
+      }
+    }
+
+    td, th {
+      border: none;
+      white-space: nowrap;
+    }
+
+    th {
+      font-weight: 400;
+      text-align: left;
+    }
+
+    td {
+      font-weight: 100;
+    }
+  }
+}
+
+@media (max-width: 1023.9px) {
+  .markdown-body {
+    padding-bottom: 2rem;
+
+    table {
+      display: block !important;
+    }
+  }
+}
+
+.code-wrapper {
+  // border: 1px #ccc solid;
+  background-color: var(--kenote-code-bg) !important;
+
+  code, code[class*='language-'], pre[class*='language-'] {
+    line-height: 1;
+    color: var(--kenote-code-text);
+  }
+
+  code, :not(pre) > code[class*='language-'], pre[class*='language-'] {
+    background-color: var(--kenote-code-bg);
+  }
+}
+
+.router-link-active {
+  --tw-text-opacity: 1;
+  border-color: rgba(147, 197, 253, var(--tw-text-opacity)) !important;
+  color: rgba(147, 197, 253, var(--tw-text-opacity)) !important;
+}
+
+.logo > .router-link-active {
+  color: var(--kenote-text) !important;
+}
+
+.el-autocomplete {
+
+  .el-input {
+    font-size: 14px;
+
+    .el-input__inner {
+      background-color: var(--kenote-input-bg);
+      border-color: var(--kenote-bc);
+      color: var(--kenote-input-text);
+    }
+  }
+}
+
+
+
+
+.searchbar-popper {
+  background-color: var(--kenote-popper-bg);
+  border-color: var(--kenote-popper-bc);
+
+  &[x-placement^=bottom] .popper__arrow {
+    border-bottom-color: var(--kenote-popper-bc);
+
+    &::after {
+      border-bottom-color: var(--kenote-popper-bg);
+    }
+  }
+
+  li {
+    color: var(--kenote-popper-text);
+    border-bottom: 1px solid;
+    border-color: var(--kenote-popper-bc);
+
+    .description {
+      color: var(--kenote-paratext);
+    }
+
+    .keywords {
+      color: var(--kenote-keywords);
+    }
+    
+    &.highlighted,
+    &:hover {
+      color: var(---kenote-popper-text);
+      background-color: var(--kenote-popper-hover);
+    }
+  }
+}
