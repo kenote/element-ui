@@ -14,9 +14,7 @@ export declare function parseCommand<T>(value: string, tag: string): Command.val
  * @param value 
  */
 export declare function runCommand(self: Vue): (value: string) => void
-export declare function runCommand(self: Vue, commands: Record<string, Function>): (value: string) => void
-export declare function runCommand(self: Vue, commands: Record<string, Function>): (value: string, row: Record<string, any>) => void
-export declare function runCommand(self: Vue, commands: Record<string, Function>): (value: string, row: Record<string, any>, component: Vue | Record<string, any>) => void
+export declare function runCommand(self: Vue, commands: Record<string, Function>): (value: string, row?: Record<string, any>, component?: Vue | Record<string, any>) => void
 
 /**
  * 检索频道数据节点，结果返回到列表
@@ -55,17 +53,13 @@ export declare function parseTemplate (tpl: string, context: object): string
  * @param env 
  * @returns 
  */
-export declare function isDisabled(): (disabled: boolean | FilterQuery<any> | string) => boolean
-export declare function isDisabled(): (disabled: boolean | FilterQuery<any> | string, props: Record<string, any>) => boolean
-export declare function isDisabled(env: Record<string, any>): (disabled: boolean | FilterQuery<any> | string) => boolean
-export declare function isDisabled(env: Record<string, any>): (disabled: boolean | FilterQuery<any> | string, props: Record<string, any>) => boolean
+export declare function isDisabled(): (disabled: boolean | FilterQuery<any> | string, props?: Record<string, any>) => boolean
+export declare function isDisabled(env: Record<string, any>): (disabled: boolean | FilterQuery<any> | string, props?: Record<string, any>) => boolean
 
 /**
  * 判断是否过滤
  * @param conditions 
  * @param env 
  */
-export declare function isFilter(): (conditions: FilterQuery<any> | string) => boolean
-export declare function isFilter(): (conditions: FilterQuery<any> | string, props: Record<string, any>) => boolean
-export declare function isFilter(env: Record<string, any>): (conditions: FilterQuery<any> | string) => boolean
-export declare function isFilter(env: Record<string, any>): (conditions: FilterQuery<any> | string, props: Record<string, any>) => boolean
+export declare function isFilter(): (conditions: FilterQuery<any> | string, props?: Record<string, any>) => boolean
+export declare function isFilter(env: Record<string, any>): (conditions: FilterQuery<any> | string, props?: Record<string, any>) => boolean

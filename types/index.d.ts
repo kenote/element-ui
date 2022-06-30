@@ -1,4 +1,3 @@
-import { ChannelDataNode as KlChannelDataNode } from '@kenote/common'
 
 export declare namespace Command {
 
@@ -14,7 +13,7 @@ export declare interface PlusKeywordsNode {
   keywords      ?: string[]
 }
 
-// export * from '../packages/components'
+export * from '../packages/components'
 export const Plugin: Vue.PluginObject<any>
 export { 
   filterChannelDataNode, 
