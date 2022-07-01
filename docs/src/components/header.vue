@@ -15,7 +15,7 @@
       
     </div> -->
     <div class="hidden lg:flex items-center flex-1 justify-end">
-      <kl-channel-searchbar class="lg:hidden"
+      <kl-channel-searchbar
         :data="channels"
         placeholder="搜索文档"
         @command="handleChannelNode"
