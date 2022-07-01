@@ -11,3 +11,8 @@ install:
 reinstall:
 	@make clear
 	@make install
+
+publish:
+	@rm -rf node_modules
+	@npm set registry https://registry.npmjs.org
+	@npm publish --access public

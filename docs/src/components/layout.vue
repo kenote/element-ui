@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col h-full overflow-hidden">
     <div class="flex flex-row h-[var(--header-height)] border-b-1 border-[var(--kenote-bc)]">
-      <vc-header :theme="theme" :channels="channels" @command="handleCommand" @channel-node="handleChannelNode"></vc-header>
+      <vc-header :theme="theme" :channels="channels" :sidebar="!!sidebar" @command="handleCommand" @channel-node="handleChannelNode"></vc-header>
     </div>
     <div class="flex flex-1 flex-row top-[var(--header-height)] bottom-0 left-0 right-0 fixed">
       <perfect-scrollbar v-if="screenWidth > 1024" ref="main" :options="{ suppressScrollX: true }" class="w-full">
@@ -30,7 +30,7 @@
         @focus="handleFocus('nav')"
         @blur="handleBlur"
         />
-      <nav>
+      <nav class="flex-1">
         <ul class="py-4 px-4 lg:pt-10 text-lg">
           <li v-for="item in channels" :key="item.key">
             <router-link :to="item.route" class="

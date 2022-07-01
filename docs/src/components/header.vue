@@ -1,6 +1,6 @@
 <template>
   <header class="m-auto max-w-[var(--screen-max-width)] w-full h-full flex px-2 md:px-6">
-    <div class="flex items-center mr-2 lg:hidden">
+    <div class="flex items-center mr-2 lg:hidden" v-if="sidebar">
       <button class="inline-flex text-xl p-2" @click="handleCommand('command:aside')">
         <span class="iconfont icon-menu-fold !text-2xl "></span>
       </button>
@@ -57,6 +57,9 @@ export default class VcHeader extends Vue {
 
   @Prop({ default: [] })
   channels!: ChannelDataNode<PlusKeywordsNode>[]
+
+  @Prop({ default: false })
+  sidebar!: boolean
 
   @Emit('command')
   handleCommand (value: string) {}

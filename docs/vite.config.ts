@@ -42,10 +42,16 @@ export default defineConfig({
     }),
     Components({
       resolvers: [ 
-        ElementUiResolver()
+        ElementUiResolver(),
+        (componentName) => {
+          if (componentName.startsWith('Kl')) {
+            return { name: componentName.slice(2), from: path.resolve(process.cwd()) }
+          }
+        },
       ],
       extensions: ['vue', 'md'],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
+      dts: false
     }),
     Layouts({
       layoutsDirs: 'src/layouts',
@@ -85,6 +91,16 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    // sourcemap: true
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return id.toString().split('node_modules')[1].split('/')[1].toString()
+          }
+        }
+      }
+    },
+    // chunkSizeWarningLimit: 300,
+    minify: 'esbuild'
   },
 })

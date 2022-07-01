@@ -10,8 +10,7 @@
   "scripts": {
     "docs:dev": "vite --host --config docs/vite.config.ts",
     "docs:build": "vite build --config docs/vite.config.ts",
-    "docs:serve": "npm run docs:build && npx kenote http docs/dist",
-    "build": "vite build"
+    "lib:build": "vite build"
   },
   "dependencies": {
     "nunjucks": "^3.2.3",

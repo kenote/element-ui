@@ -43,6 +43,7 @@ jspm_packages/
 package-lock.json
 yarn.lock
 /docs/dist/
+deploy.config.yml
 
 # TypeScript v1 declaration files
 typings/
