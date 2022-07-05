@@ -6,15 +6,15 @@
       </button>
     </div>
     <div class="flex items-center flex-1 lg:flex-none logo">
-      <router-link class="inline-flex items-center text-xl lg:text-2xl font-semibold" to="/">
-        <!-- <img class="inline-flex mr-1 lg:mr-3 h-8 " src="/logo.png" /> -->
-        @kenote/element-ui
+      <router-link class="inline-flex items-center text-2xl lg:text-2xl font-semibold" to="/">
+        <img class="inline-flex mr-2 lg:mr-3 h-8 " src="/logo1.png" />
+        <span>Element UI</span> 
       </router-link>
     </div>
     <!-- <div class="flex items-center order-last ml-2 lg:order-none lg:flex-1 lg:ml-4 xl:ml-10">
       
     </div> -->
-    <div class="hidden lg:flex items-center flex-1 justify-end">
+    <div class="hidden lg:flex items-center flex-1 justify-end ">
       <kl-channel-searchbar
         :data="channels"
         placeholder="搜索文档"

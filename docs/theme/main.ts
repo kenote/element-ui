@@ -1,17 +1,17 @@
 import Vue, { CreateElement } from 'vue'
 import App from './App.vue'
-import router from '~/router'
+import router from './router'
 import VueHead from 'vue-head'
 import VueCompositionAPI from '@vue/composition-api'
 
 // 加载 内部组件
-import '~/plugins/component'
+import './plugins/component'
 // 加载 Demo
-import '~/plugins/demo'
+import './plugins/demo'
 // 加载 Element UI 组件
-import '~/plugins/element-ui'
+import './plugins/element-ui'
 // 加载 Lib 组件
-import '~/plugins/lib'
+import './plugins/lib'
 
 import 'virtual:windi.css'
 import 'element-ui/lib/theme-chalk/index.css'

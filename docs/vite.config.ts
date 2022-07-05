@@ -54,7 +54,7 @@ export default defineConfig({
       dts: false
     }),
     Layouts({
-      layoutsDirs: 'src/layouts',
+      layoutsDirs: 'theme/layouts',
       defaultLayout: 'basic'
     }),
     Pages({
@@ -83,7 +83,11 @@ export default defineConfig({
       //   md.use(require('markdown-it-prism'))
       // }
     }),
-    WindiCSS(),
+    WindiCSS({
+      scan: {
+        dirs: ['theme', 'pages']
+      }
+    }),
   ],
 
   base: './',

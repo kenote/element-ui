@@ -1,6 +1,6 @@
 {
   "name": "@kenote/element-ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/kl-element-ui.umd.js",
   "typings": "./types",
   "module": "lib/kl-element-ui.es.js",

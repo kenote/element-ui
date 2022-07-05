@@ -5,7 +5,7 @@
     "baseUrl": ".",
     "paths": {
       "~/*": [
-        "./src/*"
+        "theme/*"
       ],
       "@/*": [
         "../*"
@@ -20,7 +20,8 @@
   "include": [
     "config",
     "demos", 
-    "src",
+    "pages",
+    "theme",
     "vite.config.ts",
     "**/*.ts",
     "**/*.d.ts", 
