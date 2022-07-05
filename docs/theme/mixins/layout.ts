@@ -1,5 +1,5 @@
 import { Component, Provide, Vue, Watch } from 'vue-property-decorator'
-import { ChannelDataNode, getChannelKey } from '@kenote/common'
+import { ChannelDataNode, getChannelKey, dataNodeProxy } from '@kenote/common'
 import ruleJudgment from 'rule-judgment'
 import { channels } from '~/../config'
 import { runCommand } from '@/packages/utilities'
@@ -15,6 +15,9 @@ import { get } from 'lodash'
     this.updateChannel(this.$route.path)
     this.screenWidth = document.body.clientWidth
     window.addEventListener('resize', this.handleResize, true)
+    // 
+    this.redirectIndex(this.$route)
+    
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize, false)
@@ -54,6 +57,7 @@ export default class LayoutMixin extends Vue {
     this.handleCloseDrawer()
     let el = get(this.$refs, ['layout', '$refs', 'main', '$el']) as HTMLDivElement
     // el.scrollTo({ top: 0 })
+    this.redirectIndex(val)
   }
 
   updateChannel (routePath: string) {
@@ -106,9 +110,15 @@ export default class LayoutMixin extends Vue {
   }
 
   handleChannelNode (node: ChannelDataNode<PlusKeywordsNode>) {
-    console.log(node)
     let { route } = node
     route && this.$router.push(route)
+  }
+
+  redirectIndex (route: Route) {
+    let node = dataNodeProxy(this.channels).find( { route: route.path } )
+    if (node?.index) {
+      this.$router.push({ path: node.index })
+    }
   }
 
 }

@@ -22,7 +22,7 @@
   shadow-sm
   text-base text-white font-medium
   transition duration-50
-  ring-primary focus:ring-3 ring-opacity-50 text-base px-3 py-2.5 md:text-lg md:px-4 md:py-3 border-2" to="/components">
+  ring-primary focus:ring-3 ring-opacity-50 text-base px-3 py-2.5 md:text-lg md:px-4 md:py-3 border-2" to="/guide">
                 起步
               </router-link>
               <router-link class="inline-flex items-center justify-center

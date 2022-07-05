@@ -4,6 +4,42 @@ import { PlusKeywordsNode } from '@/types'
 
 export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
   {
+    key: 'guide',
+    name: '指南',
+    label: 'guide',
+    route: '/guide',
+    index: '/guide/installation',
+    children: [
+      {
+        key: 'guide',
+        name: '开发指南',
+        children: [
+          {
+            key: 'installation',
+            name: '安装',
+            keywords: ['guide', 'install', '安装', '起步', '使用'],
+            route: '/guide/installation',
+            description: '安装使用 @kenote/element-ui'
+          },
+          {
+            key: 'nuxt',
+            name: '在 Nuxt 中使用',
+            keywords: ['guide', 'nuxt', '起步'],
+            route: '/guide/nuxt',
+            description: '在 Nuxt 中使用 @kenote/element-ui 组件'
+          },
+          {
+            key: 'vite',
+            name: '在 Vite 中使用',
+            keywords: ['guide', 'vite', '起步'],
+            route: '/guide/vite',
+            description: '在 Vite 中使用 @kenote/element-ui 组件'
+          }
+        ]
+      }
+    ]
+  },
+  {
     key: 'utilities',
     name: '工具集',
     label: 'utilities',
