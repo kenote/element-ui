@@ -1,6 +1,7 @@
 
-import type { ChannelDataNode, FilterQuery } from '@kenote/common'
-import type { Command, PlusKeywordsNode } from '.'
+import { ChannelDataNode, FilterQuery } from '@kenote/common'
+import { Command, PlusKeywordsNode } from '.'
+import nunjucks from 'nunjucks'
 
 /**
  * 解析命令指向
@@ -47,19 +48,44 @@ export declare function parseContent (path: string, env: Record<string, any>): s
  * @param context 
  */
 export declare function parseTemplate (tpl: string, context: object): string
+export declare function parseTemplate (tpl: string, context: object, opts: nunjucks.ConfigureOptions): string
+
 
 /**
  * 判断是否禁用
  * @param env 
  * @returns 
  */
-export declare function isDisabled(): (disabled: boolean | FilterQuery<any> | string, props?: Record<string, any>) => boolean
-export declare function isDisabled(env: Record<string, any>): (disabled: boolean | FilterQuery<any> | string, props?: Record<string, any>) => boolean
+export declare function isDisabled (): (disabled: boolean | FilterQuery<any> | string, props?: Record<string, any>) => boolean
+export declare function isDisabled (env: Record<string, any>): (disabled: boolean | FilterQuery<any> | string, props?: Record<string, any>) => boolean
 
 /**
  * 判断是否过滤
  * @param conditions 
  * @param env 
  */
-export declare function isFilter(): (conditions: FilterQuery<any> | string, props?: Record<string, any>) => boolean
-export declare function isFilter(env: Record<string, any>): (conditions: FilterQuery<any> | string, props?: Record<string, any>) => boolean
+export declare function isFilter (): (conditions: FilterQuery<any> | string, props?: Record<string, any>) => boolean
+export declare function isFilter (env: Record<string, any>): (conditions: FilterQuery<any> | string, props?: Record<string, any>) => boolean
+
+/**
+ * 获取过滤器
+ * @param conditions 
+ * @param props 
+ */
+export declare function getFilter(conditions: FilterQuery<any>): (data: any) => boolean
+export declare function getFilter(conditions: string, props: Record<string, any>): (data: any) => boolean
+
+/**
+ * 获取过滤条件
+ * @param conditions 
+ * @param props 
+ */
+export declare function getConditions(conditions: FilterQuery<any>): FilterQuery<any> | null
+export declare function getConditions(conditions: string, props: Record<string, any>): FilterQuery<any> | null
+
+/**
+ * 映射对象
+ * @param props 
+ */
+export declare function parseProps (): (data: Record<string, any>) => Record<string, any>
+export declare function parseProps (props: Record<string, string>): (data: Record<string, any>) => Record<string, any>

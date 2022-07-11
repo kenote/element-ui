@@ -1,9 +1,9 @@
 <template>
   <div>
-    <el-button @click="handleCommand('action:open_left')">左侧打开</el-button>
-    <el-button @click="handleCommand('action:open_right')">右侧打开</el-button>
-    <el-button @click="handleCommand('action:open_top')">顶部打开</el-button>
-    <el-button @click="handleCommand('action:open_bottom')">底部打开</el-button>
+    <el-button type="primary" @click="handleCommand('action:open_left')">左侧打开</el-button>
+    <el-button type="success" @click="handleCommand('action:open_right')">右侧打开</el-button>
+    <el-button type="warning" @click="handleCommand('action:open_top')">顶部打开</el-button>
+    <el-button type="danger" @click="handleCommand('action:open_bottom')">底部打开</el-button>
 
     <kl-drawer class="dark:bg-dark-700" 
       placement="left" 
@@ -82,3 +82,9 @@ export default class Demo extends Vue {
 }
 
 </script>
+
+<style lang="less" scoped>
+.el-button {
+  margin: 10px;
+}
+</style>

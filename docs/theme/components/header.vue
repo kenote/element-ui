@@ -31,6 +31,9 @@
       </nav>
     </div>
     <div class="flex items-center lg:space-x-3 lg:pl-3 xl:pl-6">
+      <button class="inline-flex text-xl p-2" @click="handleCommand('https://github.com/kenote/element-ui|__blank')">
+        <span class="iconfont icon-github !text-2xl"></span>
+      </button>
       <button class="inline-flex text-xl p-2" @click="handleCommand('command:theme')">
         <span v-if="theme == 'dark'" class="iconfont icon-moon !text-2xl "></span>
         <span v-else class="iconfont icon-sun !text-2xl"></span>

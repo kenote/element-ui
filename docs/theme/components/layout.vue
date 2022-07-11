@@ -73,7 +73,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Emit, Prop, Vue, Watch } from 'vue-property-decorator'
+import { Component, Emit, Prop, Provide, Vue, Watch } from 'vue-property-decorator'
 import { ChannelDataNode } from '@kenote/common'
 import type { PlusKeywordsNode } from '@/types'
 
@@ -87,9 +87,6 @@ export default class VcLayout extends Vue {
 
   @Prop({ default: '' })
   drawer!: string
-
-  @Prop({ default: '' })
-  lock!: string
   
   @Prop({ default: '' })
   theme!: string
@@ -99,6 +96,9 @@ export default class VcLayout extends Vue {
 
   @Prop({ default: undefined })
   sidebar!: ChannelDataNode<PlusKeywordsNode>[]
+
+  @Provide()
+  lock: string = ''
 
   @Emit('command')
   handleCommand (value: string) {}

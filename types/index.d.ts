@@ -17,11 +17,14 @@ export * from '../packages/components'
 export const Plugin: Vue.PluginObject<any>
 export { 
   filterChannelDataNode, 
-  parseCommand, 
-  runCommand, 
-  parseDate, 
-  parseContent, 
-  parseTemplate, 
+  getConditions,
+  getFilter,
   isDisabled, 
-  isFilter 
+  isFilter,
+  parseCommand, 
+  parseContent,
+  parseDate,
+  parseProps,
+  parseTemplate, 
+  runCommand, 
 } from './utilities'

@@ -27,7 +27,9 @@ import { ChannelDataNode } from '@kenote/common'
 
 export default {
   data() {
-    channels: []
+    return {
+      channels: []
+    }
   },
   methods: {
     handleCommand (value: ChannelDataNode<any>) {

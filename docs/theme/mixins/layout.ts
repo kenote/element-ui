@@ -17,7 +17,6 @@ import { get } from 'lodash'
     window.addEventListener('resize', this.handleResize, true)
     // 
     this.redirectIndex(this.$route)
-    
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize, false)
@@ -56,7 +55,7 @@ export default class LayoutMixin extends Vue {
     this.updateChannel(val.path)
     this.handleCloseDrawer()
     let el = get(this.$refs, ['layout', '$refs', 'main', '$el']) as HTMLDivElement
-    // el.scrollTo({ top: 0 })
+    el?.scrollTo({ top: 0 })
     this.redirectIndex(val)
   }
 

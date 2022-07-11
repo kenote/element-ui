@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import 'vue-router'
 import { dataNodeProxy, ChannelDataNode, FilterQuery } from '@kenote/common'
-import { assign, compact, get, isBoolean, isDate, isFunction, isNaN, isPlainObject, isString, map, omit, pick } from 'lodash'
+import { assign, compact, get, isBoolean, isDate, isFunction, isNaN, isPlainObject, isString, map, merge, omit, pick } from 'lodash'
 import type { Command, PlusKeywordsNode } from '../../types'
 import ruleJudgment from 'rule-judgment'
 import jsYaml from 'js-yaml'
@@ -72,7 +72,7 @@ export function runCommand (self: Vue, commands?: Record<string, Function>) {
  * @param keywords 
  * @param list 
  */
- export function filterChannelDataNode (data: ChannelDataNode<PlusKeywordsNode>[], keywords: string, list: ChannelDataNode<PlusKeywordsNode>[] = []) {
+export function filterChannelDataNode (data: ChannelDataNode<PlusKeywordsNode>[], keywords: string, list: ChannelDataNode<PlusKeywordsNode>[] = []) {
   if (!keywords) return
   let keys = map(list, 'key')
   let query: FilterQuery<ChannelDataNode<PlusKeywordsNode>> = {
@@ -133,7 +133,7 @@ export function isFilter (env?: Record<string, any>) {
  * @param conditions 
  * @param props 
  */
- export function getFilter (conditions: FilterQuery<any> | string, props: Record<string, any> = {}) {
+export function getFilter (conditions: FilterQuery<any> | string, props: Record<string, any> = {}) {
   if (!conditions) return (data: any) => true
   let query: FilterQuery<any> = conditions as FilterQuery<any>
   if (isString(conditions)) {
@@ -163,8 +163,8 @@ export function getConditions (conditions: FilterQuery<any> | string, props: Rec
  * @param tpl 
  * @param context 
  */
-export function parseTemplate (tpl: string, context: object) {
-  let env = new nunjucks.Environment(null, { autoescape: false })
+export function parseTemplate (tpl: string, context: object, opts?: nunjucks.ConfigureOptions) {
+  let env = new nunjucks.Environment(null, merge({ autoescape: false }, opts))
   env.addFilter(parseDate.name, value => String(parseDate(value))) // 解析时间字面量
   env.addFilter(parseContent.name, value => String.raw`${parseContent(value, context)}` ) // 解析某个对象属性的文本内容
   return env.renderString(tpl, context)
@@ -272,7 +272,7 @@ export function parseContent (path: string, env: Record<string, any>) {
  * 映射对象
  * @param props 
  */
- export function parseProps (props?: Record<string, string>) {
+export function parseProps (props?: Record<string, string>) {
   return (data: Record<string, any>) => {
     if (!props) return data
     let result = data

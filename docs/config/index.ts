@@ -50,13 +50,6 @@ export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
         name: '指令',
         children: [
           {
-            key: 'parse-command',
-            name: 'parseCommand',
-            keywords: [ 'utilities', '工具', 'command', '指令', 'parse-command' ],
-            route: '/utilities/parse-command',
-            description: '解析字符串指令'
-          },
-          {
             key: 'run-command',
             name: 'runCommand',
             keywords: [ 'utilities', '工具', 'command', '指令', 'run-command' ],
@@ -75,6 +68,73 @@ export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
             keywords: [ 'utilities', '工具', 'filter', '检索', 'channel', 'datanode' ],
             route: '/utilities/filter-channel-datanode',
             description: '检索频道数据节点，结果返回到列表'
+          },
+          {
+            key: 'is-disabled',
+            name: 'isDisabled',
+            keywords: [ 'utilities', '工具', '判断', '禁用' ],
+            route: '/utilities/is-disabled',
+            description: '判断是否禁用模式'
+          },
+          {
+            key: 'is-filter',
+            name: 'isFilter',
+            keywords: [ 'utilities', '工具', '判断', '过滤' ],
+            route: '/utilities/is-filter',
+            description: '判断是否过滤'
+          },
+          {
+            key: 'get-conditions',
+            name: 'getConditions',
+            keywords: [ 'utilities', '工具', '获取', '过滤', '条件' ],
+            route: '/utilities/get-conditions',
+            description: '获取过滤条件'
+          },
+          {
+            key: 'get-filter',
+            name: 'getFilter',
+            keywords: [ 'utilities', '工具', '获取', '过滤' ],
+            route: '/utilities/get-filter',
+            description: '获取过滤器'
+          },
+        ]
+      },
+      {
+        key: 'parse',
+        name: '解析',
+        children: [
+          {
+            key: 'parse-date',
+            name: 'parseDate',
+            route: '/utilities/parse-date',
+            description: '解析日期时间字面量'
+          },
+          {
+            key: 'parse-template',
+            name: 'parseTemplate',
+            keywords: [ 'utilities', '工具', '模版', '解析' ],
+            route: '/utilities/parse-template',
+            description: '解析字符串模版'
+          },
+          {
+            key: 'parse-command',
+            name: 'parseCommand',
+            keywords: [ 'utilities', '工具', 'command', '指令', '解析' ],
+            route: '/utilities/parse-command',
+            description: '解析字符串指令'
+          },
+          {
+            key: 'parse-props',
+            name: 'parseProps',
+            keywords: [ 'utilities', '工具', '映射', '对象', '解析' ],
+            route: '/utilities/parse-props',
+            description: '映射 object 对象的键值'
+          },
+          {
+            key: 'template',
+            name: '模版语法',
+            route: '/utilities/template',
+            description: ''
           }
         ]
       }
@@ -113,7 +173,7 @@ export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
             name: 'Drawer',
             route: '/components/drawer',
             description: '推拉抽屉'
-          }
+          },
         ]
       }
     ]
