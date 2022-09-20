@@ -51,7 +51,7 @@ export default defineConfig({
       ],
       extensions: ['vue', 'md'],
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-      dts: false
+      // dts: false
     }),
     Layouts({
       layoutsDirs: 'theme/layouts',

@@ -13,6 +13,7 @@ export declare interface PlusKeywordsNode {
   keywords      ?: string[]
 }
 
+export * from './account'
 export * from '../packages/components'
 export const Plugin: Vue.PluginObject<any>
 export { 

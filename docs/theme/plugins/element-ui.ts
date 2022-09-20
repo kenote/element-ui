@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import {
   Autocomplete,
+  Button,
+  Form,
+  FormItem,
+  Input,
   Loading,
   Message,
   MessageBox,
@@ -8,6 +12,10 @@ import {
 } from 'element-ui'
 
 Vue.use(Autocomplete)
+Vue.use(Button)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Input)
 Vue.use(Loading.directive)
 
 Vue.prototype.$message = Message

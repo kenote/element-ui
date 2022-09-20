@@ -51,6 +51,7 @@ export default defineConfig({
           vue: 'Vue',
           lodash: 'lodash',
           nunjucks: 'nunjucks',
+          ['element-ui']: 'element-ui',
           ['vue-fragment']: 'vue-fragment',
           ['js-yaml']: 'js-yaml',
           ['rule-judgment']: 'rule-judgment',
