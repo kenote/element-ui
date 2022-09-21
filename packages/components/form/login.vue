@@ -36,7 +36,7 @@
 
 <script lang="ts">
 import { Component, Emit, Model, Prop, Provide, Vue, Watch } from 'vue-property-decorator'
-import { Account } from '@/types'
+import { Account } from '../../../types'
 import { FilterData } from 'parse-string'
 import { Form as ElForm } from 'element-ui'
 import { Message } from 'element-ui'
