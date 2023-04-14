@@ -41,7 +41,7 @@ import { FilterData } from 'parse-string'
 import { Form as ElForm } from 'element-ui'
 import { Message } from 'element-ui'
 import 'element-ui/lib/theme-chalk/message.css'
-import { parseTemplate } from '../../utilities'
+import { parseTemplate } from '../../'
 import { Callback } from 'nunjucks'
 
 @Component<KlLoginForm>({

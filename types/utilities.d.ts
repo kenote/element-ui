@@ -89,3 +89,9 @@ export declare function getConditions(conditions: string, props: Record<string, 
  */
 export declare function parseProps (): (data: Record<string, any>) => Record<string, any>
 export declare function parseProps (props: Record<string, string>): (data: Record<string, any>) => Record<string, any>
+
+/**
+ * 为 MouseEvent 添加 path
+ * @param evt 
+ */
+export function parseMouseEvent (evt: MouseEvent & { path?: EventTarget[] }): MouseEvent & { path?: EventTarget[] }

@@ -300,7 +300,7 @@ function parseDateString (value: string) {
     month: new Date().getMonth(),
     year: new Date().getFullYear()
   }
-  let val: number = date?.[type] ?? 0
+  let val: number = date?.[type!] ?? 0
   if (/(\d+){4}/.test(label)) {
     val = Number(label)
   }
@@ -308,4 +308,23 @@ function parseDateString (value: string) {
     val += Number(label)
   }
   return val
+}
+
+/**
+ * 为 MouseEvent 添加 path
+ * @param evt 
+ * @returns 
+ */
+export function parseMouseEvent (evt: MouseEvent & { path?: EventTarget[] }) {
+  if (evt.path) {
+    return evt
+  }
+  let target = <Node> evt.target
+  evt.path = []
+  while (target.parentNode !== null) {
+    evt.path.push(target)
+    target = target.parentNode
+  }
+  evt.path.push(document, window)
+  return evt
 }

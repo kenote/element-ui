@@ -8,7 +8,8 @@
 
 <script lang="ts">
 import { Component, Prop, Provide, Vue, Watch } from 'vue-property-decorator'
-import { get, merge, compact } from 'lodash'
+import { merge, compact } from 'lodash'
+import { parseMouseEvent } from '../../'
 
 @Component<KlDrawer>({
   name: 'KlDrawer',
@@ -73,7 +74,7 @@ export default class KlDrawer extends Vue {
   handleClick (evt: MouseEvent) {
     if (this.lock) return
     let drawer = this.$refs?.['drawer'] as HTMLElement
-    let paths = compact(get(evt, 'path')?.map( el => el.className ))
+    let paths = compact(parseMouseEvent(evt).path?.map( el => (<Element>el).className ))
     if (!paths.includes(drawer?.className ?? '')) {
       if (Date.now() - this.timestamp < 10) return
       this.visible && this.$emit('close', null)
