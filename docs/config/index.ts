@@ -162,13 +162,6 @@ export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
         name: '基础',
         children: [
           {
-            key: 'channel-searchbar',
-            name: 'ChannelSearchbar',
-            keywords: [ 'components', '组件', 'searchbar', '频道搜索框' ],
-            route: '/components/channel-searchbar',
-            description: '频道搜索器，用于搜索频道下子页面'
-          },
-          {
             key: 'drawer',
             name: 'Drawer',
             route: '/components/drawer',
@@ -193,6 +186,19 @@ export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
             keywords: [ 'components', '组件', 'form', '表单', 'qrcode', '二维码' ],
             route: '/components/qrcode',
             description: '二维码'
+          },
+        ]
+      },
+      {
+        key: 'navigation',
+        name: '导航',
+        children: [
+          {
+            key: 'channel-searchbar',
+            name: 'ChannelSearchbar',
+            keywords: [ 'components', '组件', 'searchbar', '频道搜索框' ],
+            route: '/components/channel-searchbar',
+            description: '频道搜索器，用于搜索频道下子页面'
           },
         ]
       }

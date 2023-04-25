@@ -93,6 +93,4 @@ export default class Demo extends Vue {
     }, 1500)
   }
 }
-
-
 </script>

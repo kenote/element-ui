@@ -8,7 +8,7 @@
 
 ### Code
 
-```vue
+```ts
 <template>
   <div>
     <el-button @click="handleCommand('action:open_left')">左侧打开</el-button>
@@ -91,12 +91,12 @@ export default class Demo extends Vue {
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | ------ | ------ | ------ | ------ | :------: |
-| placement | 打开方向 | string | top / bottom / left / right | \'right\' |
-| width | 抽屉宽度/高度 | number | -- | 360 |
-| unit | 尺寸单位 | string | px / rem /em | \'px\' |
-| offset | 偏移距离 | number | -- | 0 |
-| lock | 锁定状态 | boolean | -- | false |
-| visible | 打开状态 | boolean | -- | false |
+| placement | 打开方向 | `string` | `top / bottom / left / right` | `right` |
+| width | 抽屉宽度/高度 | `number` | -- | `360` |
+| unit | 尺寸单位 | `string` | `px / rem / em` | `px` |
+| offset | 偏移距离 | `number` | -- | `0` |
+| lock | 锁定状态 | `boolean` | -- | `false` |
+| visible | 打开状态 | `boolean` | -- | `false` |
 
 ### Slot
 

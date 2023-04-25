@@ -13,7 +13,7 @@ npm i @kenote/element-ui --save
 
 ## 组件调用
 
-```vue
+```ts
 <template>
   <div>
     <kl-channel-searchbar

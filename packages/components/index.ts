@@ -1,3 +1,3 @@
 export * from './drawer'
-export * from './searchbar'
+export * from './navigation'
 export * from './form'

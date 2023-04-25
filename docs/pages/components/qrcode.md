@@ -8,7 +8,7 @@
 
 ### Code
 
-```vue
+```ts
 <template>
   <div>
     <kl-qrcode title="扫码登录">
@@ -27,7 +27,7 @@
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | ------ | ------ | ------ | ------ | :------: |
-| title | 标题 | string | -- | -- |
+| title | 标题 | `string` | -- | -- |
 
 ### Slots 
 

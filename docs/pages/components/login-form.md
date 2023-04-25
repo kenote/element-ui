@@ -8,7 +8,7 @@
 
 ### Code
 
-```vue
+```ts
 <template>
   <kl-login-form :loading="loading" @submit="handleSubmit" />
 </template>
@@ -39,7 +39,7 @@ export default class Demo extends Vue {
 
 ### Code
 
-```vue
+```ts
 <template>
   <kl-login-form 
     :loading="loading" 
@@ -78,7 +78,7 @@ export default class Demo extends Vue {
 
 ### Code
 
-```vue
+```ts
 <template>
   <kl-login-form 
     :loading="loading" 
@@ -124,7 +124,7 @@ export default class Demo extends Vue {
 
 ### Code
 
-```vue
+```ts
 <template>
   <kl-login-form 
     :loading="loading" 
@@ -184,20 +184,20 @@ export default class Demo extends Vue {
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | ------ | ------ | ------ | ------ | :------: |
-| loading | 提交中状态 | boolean | -- | false |
-| username-label | 用户名字段名称 | string | -- | \'用户名\' |
-| username-placeholder | 用户名字段占位文本 | string | -- | \'用户名\' |
-| username-message | 用户名字段提示信息 | string | -- | \'请输入用户名\' |
-| password-label | 密码字段名称 | string | -- | \'密码\' |
-| password-placeholder | 密码字段占位文本 | string | -- | \'密码\' |
-| password-message | 密码字段提示信息 | string | -- | \'请输入密码\' |
-| submit-name | 提交按钮显示文字 | string | -- | \'登 录\' |
-| button-type | 提交按钮类型 | string | primary / success / warning / danger / info | \'primary\' |
-| thirdparty-login | 开启第三方登录模块 | boolean | -- | false |
-| thirdparty-login-text | 第三方登录模块显示标题 | string | -- | \'其他方式\' |
-| qrcode-login | 开启二维码登录模块 | boolean | -- | false |
-| wait-step | 提交等待时长（秒） | number | -- | 5 |
-| wait-message | 提交等待提示文字 | string | -- | \`请在 `{{`step`}}` 秒后再做提交\' |
+| loading | 提交中状态 | `boolean` | -- | `false` |
+| username-label | 用户名字段名称 | `string` | -- | `用户名` |
+| username-placeholder | 用户名字段占位文本 | `string` | -- | `用户名` |
+| username-message | 用户名字段提示信息 | `string` | -- | `请输入用户名` |
+| password-label | 密码字段名称 | `string` | -- | `密码` |
+| password-placeholder | 密码字段占位文本 | `string` | -- | `密码` |
+| password-message | 密码字段提示信息 | `string` | -- | `请输入密码` |
+| submit-name | 提交按钮显示文字 | `string` | -- | `登 录` |
+| button-type | 提交按钮类型 | `string` | `primary / success / warning / danger / info` | `primary` |
+| thirdparty-login | 开启第三方登录模块 | `boolean` | -- | `false` |
+| thirdparty-login-text | 第三方登录模块显示标题 | `string` | -- | `其他方式` |
+| qrcode-login | 开启二维码登录模块 | `boolean` | -- | `false` |
+| wait-step | 提交等待时长（秒） | `number` | -- | `5` |
+| wait-message | 提交等待提示文字 | `string` | -- | 请在 `{{`step`}}` 秒后再做提交 |
 
 ### Slots 
 
@@ -212,4 +212,4 @@ export default class Demo extends Vue {
 
 | 事件名称 | 说明 | 回调参数 |
 | ------ | ------ | ------ |
-| submit | 登录提交 | (value: any, cb: Callback\<any,, any\>) |
+| submit | 登录提交 | `(value: any, cb: Callback\<any,, any\>) => void` |

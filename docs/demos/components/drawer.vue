@@ -63,13 +63,6 @@ export default class Demo extends Vue {
           this.handleClose()
         }
       },
-      // aside: () => {
-      //   if (this.drawer === 'aside') {
-      //     this.handleCloseDrawer()
-      //     return
-      //   }
-      //   this.drawer = 'aside'
-      // },
       close: () => {
         this.handleClose()
       }

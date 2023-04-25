@@ -8,7 +8,7 @@
 
 ### Code
 
-```vue
+```ts
 <template>
   <div>
     <kl-channel-searchbar 
@@ -170,17 +170,17 @@ export default class Demo extends Vue {
 
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | ------ | ------ | ------ | ------ | :------: |
-| data | 频道数据 | ChannelDataNode[] | -- | -- |
-| placeholder | 输入框占位文本 | string | -- | \'搜索内容\' |
-| props | 对象映射表 | Record\<string, any\> | -- | { value: 'name' } |
-| filter | 单元过滤器 | FilterQuery\<ChannelDataNode\> | -- | -- |
-| popper-class | 下拉列表的类名 | string | -- | \'searchbar-popper\' |
-| size | 输入框尺寸 | string | medium / small / mini | \'default\' |
+| data | 频道数据 | `ChannelDataNode[]` | -- | -- |
+| placeholder | 输入框占位文本 | `string` | -- | `搜索内容` |
+| props | 对象映射表 | `Record\<string, any\>` | -- | `{ value: "name" }` |
+| filter | 单元过滤器 | `FilterQuery\<ChannelDataNode\>` | -- | -- |
+| popper-class | 下拉列表的类名 | `string` | -- | `searchbar-popper` |
+| size | 输入框尺寸 | `string` | `medium / small / mini` | `default` |
 
 ### Events
 
 | 事件名称 | 说明 | 回调参数 |
 | ------ | ------ | ------ |
-| command | 点击下拉条目时触发 | (value: ChannelDataNode) |
-| focus | 获得焦点时触发 | (event: Event) |
-| blur | 失去焦点时触发 | (event: Event) |
+| command | 点击下拉条目时触发 | `(value: ChannelDataNode) => void` |
+| focus | 获得焦点时触发 | `(event: Event) => void` |
+| blur | 失去焦点时触发 | `(event: Event) => void` |

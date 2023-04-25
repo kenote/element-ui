@@ -20,7 +20,7 @@ function runCommand(self: Vue, commands?: Record<string, Function>):
 
 ### 基础使用
 
-```vue
+```ts
 <template>
   <div>
     <!-- 打开网页 -->
@@ -47,7 +47,7 @@ export default {
 
 ### 简单指令
 
-```vue
+```ts
 <template>
   <div>
     <el-button @click="handleCommand('command:test1')">指令1</el-button>
@@ -81,7 +81,7 @@ export default {
 
 ### 分类指令
 
-```vue
+```ts
 <template>
   <div>
     <el-button @click="handleCommand('action:edit')">Action 指令</el-button>

@@ -26,6 +26,7 @@ export {
   parseContent,
   parseDate,
   parseProps,
-  parseTemplate, 
+  parseTemplate,
+  parseMouseEvent,
   runCommand, 
 } from './utilities'

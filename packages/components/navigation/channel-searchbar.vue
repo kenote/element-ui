@@ -27,7 +27,7 @@
 import { Component, Emit, Model, Prop, Provide, Vue, Watch } from 'vue-property-decorator'
 import { ChannelDataNode, CommonDataNode, FilterQuery, initMaps } from '@kenote/common'
 import ruleJudgment from 'rule-judgment'
-import { filterChannelDataNode, parseProps } from '../../'
+import { filterChannelDataNode, parseProps } from '../..'
 import { assign, trim } from 'lodash'
 import type { Autocomplete } from 'element-ui'
 
