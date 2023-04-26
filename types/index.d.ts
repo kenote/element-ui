@@ -1,3 +1,4 @@
+import { FilterQuery } from '@kenote/common'
 
 export declare namespace Command {
 
@@ -11,10 +12,13 @@ export declare namespace Command {
 
 export declare interface PlusKeywordsNode {
   keywords      ?: string[]
+  tag           ?: string
+  disabled      ?: boolean | FilterQuery<any> | string
 }
 
 export * from './account'
 export * from '../packages/components'
+export * from '../packages/mixins'
 export const Plugin: Vue.PluginObject<any>
 export { 
   filterChannelDataNode, 

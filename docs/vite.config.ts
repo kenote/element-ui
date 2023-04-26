@@ -45,7 +45,7 @@ export default defineConfig({
         ElementUiResolver(),
         (componentName) => {
           if (componentName.startsWith('Kl')) {
-            return { name: componentName.slice(2), from: path.resolve(process.cwd()) }
+            return { name: componentName.slice(2), from: path.resolve(process.cwd(), process.env.NODE_ENV == 'development' ? 'packages' : '') }
           }
         },
       ],
