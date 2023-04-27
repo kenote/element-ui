@@ -8,11 +8,11 @@ import _ from 'lodash'
 export default class KlBaseMixin extends Vue {
 
   @Prop({ default: undefined })
-  Env!: Record<string, any>
+  env!: Record<string, any>
 
   _ = _
 
-  isDisabled = isDisabled(this.Env)
+  isDisabled = isDisabled(this.env)
 
   parseTag (value: string, name: string): { label?: string, type?: '' | 'success' | 'info' | 'warning' | 'danger'} {
     let [ label, type ] = value.split('_')

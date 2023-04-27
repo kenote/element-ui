@@ -13,7 +13,7 @@
         :children="item.children"
         :tag="item.tag"
         :disabled="item.disabled"
-        :Env="Env"
+        :eenv="env"
         :popper-class="popperClass"
         :tag-class="tagClass"
         >

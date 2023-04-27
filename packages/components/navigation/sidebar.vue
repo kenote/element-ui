@@ -19,7 +19,7 @@
           :tag="item.tag"
           :popper-class="popperClass"
           :tag-class="tagClass"
-          :Env="Env">
+          :env="env">
         </sidebar-item>
       </el-menu>
     </perfect-scrollbar>
