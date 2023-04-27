@@ -74,21 +74,28 @@ export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
             name: 'isDisabled',
             keywords: [ 'utilities', '工具', '判断', '禁用' ],
             route: '/utilities/is-disabled',
-            description: '判断是否禁用模式'
+            description: '判断是否禁用模式',
+            tag: 'new_info'
           },
           {
             key: 'is-filter',
             name: 'isFilter',
             keywords: [ 'utilities', '工具', '判断', '过滤' ],
             route: '/utilities/is-filter',
-            description: '判断是否过滤'
+            description: '判断是否过滤',
+            disabled: true
           },
           {
             key: 'get-conditions',
             name: 'getConditions',
             keywords: [ 'utilities', '工具', '获取', '过滤', '条件' ],
             route: '/utilities/get-conditions',
-            description: '获取过滤条件'
+            description: '获取过滤条件',
+            disabled: {
+              'auth.group.level': {
+                $lte: 9000
+              }
+            }
           },
           {
             key: 'get-filter',
@@ -199,6 +206,12 @@ export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
             keywords: [ 'components', '组件', 'searchbar', '频道搜索框' ],
             route: '/components/channel-searchbar',
             description: '频道搜索器，用于搜索频道下子页面'
+          },
+          {
+            key: 'sidebar',
+            name: 'Sidebar',
+            route: '/components/sidebar',
+            description: '侧栏导航'
           },
         ]
       }

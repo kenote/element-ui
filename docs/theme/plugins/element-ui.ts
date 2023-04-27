@@ -6,9 +6,16 @@ import {
   FormItem,
   Input,
   Loading,
+  Menu,
+  MenuItem,
   Message,
   MessageBox,
-  Notification
+  Notification,
+  Option,
+  Select,
+  Submenu,
+  Switch,
+  Tag,
 } from 'element-ui'
 
 Vue.use(Autocomplete)
@@ -16,6 +23,13 @@ Vue.use(Button)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
+Vue.use(Menu)
+Vue.use(MenuItem)
+Vue.use(Option)
+Vue.use(Select)
+Vue.use(Submenu)
+Vue.use(Switch)
+Vue.use(Tag)
 Vue.use(Loading.directive)
 
 Vue.prototype.$message = Message
