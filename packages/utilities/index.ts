@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import 'vue-router'
 import { dataNodeProxy, ChannelDataNode, FilterQuery } from '@kenote/common'
-import { assign, compact, get, isBoolean, isDate, isFunction, isNaN, isPlainObject, isString, map, merge, omit, pick } from 'lodash'
-import type { Command, PlusKeywordsNode } from '../../types'
+import { assign, compact, get, isBoolean, isDate, isFunction, isNaN, isPlainObject, isString, map, merge, omit, pick, template } from 'lodash'
+import type { Command, PlusKeywordsNode, PropDataItem } from '../../types'
 import ruleJudgment from 'rule-judgment'
 import jsYaml from 'js-yaml'
 import nunjucks from 'nunjucks'
@@ -272,9 +272,9 @@ export function parseContent (path: string, env: Record<string, any>) {
  * 映射对象
  * @param props 
  */
-export function parseProps (props?: Record<string, string>) {
+export function parseProps<T extends {}> (props?: Record<string, string>) {
   return (data: Record<string, any>) => {
-    if (!props) return data
+    if (!props) return data as T
     let result = data
     let keys: string[] = []
     for (let [key, val] of Object.entries(props)) {
@@ -283,7 +283,7 @@ export function parseProps (props?: Record<string, string>) {
         keys.push(val)
       }
     }
-    return omit(result, keys)
+    return omit(result, keys) as T
   }
 }
 
@@ -327,4 +327,22 @@ export function parseMouseEvent (evt: MouseEvent & { path?: EventTarget[] }) {
   }
   evt.path.push(document, window)
   return evt
+}
+
+/**
+ * 转换格式化字符串
+ * @param props 
+ * @returns 
+ */
+export function toFormatString (props?: Partial<Record<keyof PropDataItem, string>>) {
+  return (data: Record<string, any>, format: string = '{label}') => {
+    if (props) {
+      for (let item in Object.keys(props)) {
+        if (props?.[item]) {
+          format = format.replace(new RegExp(`{${item}}`, 'g'), `{${props?.[item]}}`)
+        }
+      }
+    }
+    return template(format, { interpolate: /{([\s\S]+?)}/g })(data)
+  }
 }

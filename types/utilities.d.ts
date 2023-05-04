@@ -1,6 +1,6 @@
 
 import { ChannelDataNode, FilterQuery } from '@kenote/common'
-import { Command, PlusKeywordsNode } from '.'
+import { Command, PlusKeywordsNode, PropDataItem } from '.'
 import nunjucks from 'nunjucks'
 
 /**
@@ -87,11 +87,22 @@ export declare function getConditions(conditions: string, props: Record<string, 
  * 映射对象
  * @param props 
  */
-export declare function parseProps (): (data: Record<string, any>) => Record<string, any>
-export declare function parseProps (props: Record<string, string>): (data: Record<string, any>) => Record<string, any>
+export declare function parseProps<T = Record<string, string>> (): (data: Record<string, any>) => T
+export declare function parseProps<T = Record<string, string>> (props: Record<string, string>): (data: Record<string, any>) => T
 
 /**
  * 为 MouseEvent 添加 path
  * @param evt 
  */
-export function parseMouseEvent (evt: MouseEvent & { path?: EventTarget[] }): MouseEvent & { path?: EventTarget[] }
+export declare function parseMouseEvent (evt: MouseEvent & { path?: EventTarget[] }): MouseEvent & { path?: EventTarget[] }
+
+
+/**
+ * 转换格式化字符串
+ * @param props 
+ * @returns 
+ */
+export declare function toFormatString (): (data: Record<string, any>) => string
+export declare function toFormatString (): (data: Record<string, any>, format: string) => string
+export declare function toFormatString (props: Partial<Record<keyof PropDataItem, string>>): (data: Record<string, any>) => string
+export declare function toFormatString (props: Partial<Record<keyof PropDataItem, string>>): (data: Record<string, any>, format: string) => string

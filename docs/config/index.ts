@@ -138,6 +138,13 @@ export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
             description: '映射 object 对象的键值'
           },
           {
+            key: 'to-format-string',
+            name: 'toFormatString',
+            keywords: [ 'utilities', '工具', '格式化', 'format' ],
+            route: '/utilities/to-format-string',
+            description: '转换格式化字符串'
+          },
+          {
             key: 'template',
             name: '模版语法',
             route: '/utilities/template',
@@ -193,6 +200,13 @@ export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
             keywords: [ 'components', '组件', 'form', '表单', 'qrcode', '二维码' ],
             route: '/components/qrcode',
             description: '二维码'
+          },
+          {
+            key: 'form-item',
+            name: 'FormItem',
+            keywords: [ 'components', '组件', 'form', '表单', 'item', '元素' ],
+            route: '/components/form-item',
+            description: '表单元素'
           },
         ]
       },

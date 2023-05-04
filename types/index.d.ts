@@ -16,6 +16,31 @@ export declare interface PlusKeywordsNode {
   disabled      ?: boolean | FilterQuery<any> | string
 }
 
+export type FormItemType = 
+  | 'input' 
+  | 'input-number' 
+  | 'password'
+  | 'radio' | 'radio-button' 
+  | 'checkbox' | 'checkbox-button' 
+  | 'select' 
+  | 'group-picker' | 'avatar-picker' | 'item-picker'
+  | 'year' | 'month' | 'date' | 'dates' | 'week' | 'datetime' | 'time' | 'datetimerange' | 'daterange' | 'monthrange' | 'timerange'
+  | 'switch'
+  | 'slider'
+  | 'color-picker'
+  | 'cascader' | 'cascader-panel'
+  | 'rate'
+  | 'transfer'
+  | 'codemirror'
+  | 'textarea' 
+  | 'text'
+
+export declare interface PropDataItem {
+  key            : string
+  label          : string
+  disabled      ?: boolean
+}
+
 export * from './account'
 export * from '../packages/components'
 export * from '../packages/mixins'
@@ -32,5 +57,6 @@ export {
   parseProps,
   parseTemplate,
   parseMouseEvent,
-  runCommand, 
+  runCommand,
+  toFormatString
 } from './utilities'

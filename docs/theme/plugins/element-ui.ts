@@ -2,9 +2,13 @@ import Vue from 'vue'
 import {
   Autocomplete,
   Button,
+  Checkbox,
+  CheckboxButton,
+  CheckboxGroup,
   Form,
   FormItem,
   Input,
+  InputNumber,
   Loading,
   Menu,
   MenuItem,
@@ -12,6 +16,10 @@ import {
   MessageBox,
   Notification,
   Option,
+  OptionGroup,
+  Radio,
+  RadioButton,
+  RadioGroup,
   Select,
   Submenu,
   Switch,
@@ -20,12 +28,20 @@ import {
 
 Vue.use(Autocomplete)
 Vue.use(Button)
+Vue.use(Checkbox)
+Vue.use(CheckboxButton)
+Vue.use(CheckboxGroup)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
+Vue.use(InputNumber)
 Vue.use(Menu)
 Vue.use(MenuItem)
 Vue.use(Option)
+Vue.use(OptionGroup)
+Vue.use(Radio)
+Vue.use(RadioButton)
+Vue.use(RadioGroup)
 Vue.use(Select)
 Vue.use(Submenu)
 Vue.use(Switch)
