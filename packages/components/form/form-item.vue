@@ -88,8 +88,20 @@
       </el-option-group>
       <el-option v-else :key="key" :label="toFormatString(props)(item, format)" :value="item.key" :disabled="item?.disabled"></el-option>
     </template>
-    <!-- <el-option v-for="(item, key) in propData" :key="key" :label="toFormatString(props)(item, format)" :value="item.key" :disabled="disabled"></el-option> -->
   </el-select>
+  <!-- 单日期选择 -->
+  <el-date-picker v-else-if="['year', 'month', 'date', 'dates', 'week', 'datetime'].includes(type)"
+    v-model="values"
+    :type="type"
+    :style="style"
+    :placeholder="placeholder"
+    :disabled="disabled"
+    :format="format"
+    :value-format="valueFormat"
+    :size="size"
+    />
+
+  
   <!-- 单行输入框 -->
   <el-input v-else
     v-model="values"
