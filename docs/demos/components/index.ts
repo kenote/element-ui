@@ -4,3 +4,5 @@ export { default as DcLoginForm } from './login-form.vue'
 export { default as DcQrcode } from './qrcode.vue'
 export { default as DcSidebar } from './sidebar.vue'
 export { default as DcFormItem } from './form-item.vue'
+
+export * from './date-picker'

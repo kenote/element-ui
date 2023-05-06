@@ -393,3 +393,7 @@ export default class Demo extends Vue {
 | allowCreate | 是否允许用户创建新条目，需配合 `filterable` 使用 | `boolean` | -- | `false` |
 | popperClass | Select 下拉框的类名 | `string` | -- | -- |
 
+
+## Data - 日期选择
+
+<dc-form-item type="date" />

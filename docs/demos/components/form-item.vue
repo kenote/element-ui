@@ -70,6 +70,10 @@
       @change="handleChange"
       />
     <!-- 下拉选择器 -->
+    <kl-form-item v-else-if="type == 'date'"
+      v-model="values.date"
+      type="date"
+      />
 
     <!-- 单行输入框 -->
     <kl-form-item v-else
@@ -109,6 +113,7 @@ export default class Demo extends Vue {
     radio: '1',
     checkbox: ['1', '3'],
     select: '',
+    date: '2023-05-18'
   }
 
   @Provide()

@@ -208,6 +208,27 @@ export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
             route: '/components/form-item',
             description: '表单元素'
           },
+          
+        ]
+      },
+      {
+        key: 'form-item',
+        name: '表单元素',
+        children: [
+          {
+            key: 'date-format',
+            name: '日期格式',
+            keywords: [ 'components', '组件', 'form', '表单', 'date', '日期', 'format', '格式' ],
+            route: '/components/date-format',
+            description: '日期格式'
+          },
+          {
+            key: 'date-picker',
+            name: 'DatePicker',
+            keywords: [ 'components', '组件', 'form', '表单', 'date', '日期' ],
+            route: '/components/date-picker',
+            description: '日期选择器'
+          },
         ]
       },
       {

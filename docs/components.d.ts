@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     ElCheckbox: typeof import('element-ui/lib/checkbox')['default']
     ElCheckboxButton: typeof import('element-ui/lib/checkbox-button')['default']
     ElCheckboxGroup: typeof import('element-ui/lib/checkbox-group')['default']
+    ElDatePicker: typeof import('element-ui/lib/date-picker')['default']
     ElEmpty: typeof import('element-ui/lib/empty')['default']
     ElForm: typeof import('element-ui/lib/form')['default']
     ElFormItem: typeof import('element-ui/lib/form-item')['default']
