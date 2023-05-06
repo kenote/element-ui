@@ -24,7 +24,7 @@ export type FormItemType =
   | 'checkbox' | 'checkbox-button' 
   | 'select' 
   | 'group-picker' | 'avatar-picker' | 'item-picker'
-  | 'year' | 'month' | 'date' | 'dates' | 'week' | 'datetime' | 'time' | 'datetimerange' | 'daterange' | 'monthrange' | 'timerange'
+  | 'year' | 'years' | 'month' | 'months' | 'date' | 'dates' | 'week' | 'datetime' | 'time' | 'datetimerange' | 'daterange' | 'monthrange' | 'timerange'
   | 'switch'
   | 'slider'
   | 'color-picker'

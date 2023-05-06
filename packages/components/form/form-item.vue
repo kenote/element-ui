@@ -1,4 +1,5 @@
 <template>
+  
   <!-- 密码输入框 -->
   <el-input v-if="type == 'password'"
     type="password"
@@ -90,7 +91,7 @@
     </template>
   </el-select>
   <!-- 单日期选择 -->
-  <el-date-picker v-else-if="['year', 'month', 'date', 'dates', 'week', 'datetime'].includes(type)"
+  <el-date-picker v-else-if="['year', 'years', 'month', 'months', 'date', 'dates', 'week', 'datetime'].includes(type)"
     v-model="values"
     :type="type"
     :style="style"
@@ -99,6 +100,11 @@
     :format="format"
     :value-format="valueFormat"
     :size="size"
+    :picker-options="pickerOptions"
+    :align="options?.align"
+    :clearable="options?.clearable"
+    :editable="options?.editable"
+    :readonly="readonly"
     />
 
   
@@ -117,16 +123,18 @@
     :size="size"
     :readonly="readonly"
     />
+  
 </template>
 
 <script lang="ts">
 import { Component, Emit, Model, Prop, Provide, Vue, Watch, Mixins } from 'vue-property-decorator'
-import type { FormItemType, PropDataItem } from '@/types'
+import type { FormItemType, PropDataItem } from '../../../types'
 import ruleJudgment from 'rule-judgment'
 import { isNumber, merge, assign, pickBy, identity } from 'lodash'
 import KlBaseMixin from '../../mixins/base'
 import { isDisabled, parseProps } from '../../'
 import { format } from 'path'
+import { DatePickerOptions } from 'element-ui/types/date-picker'
 
 @Component<KlFormItem>({
   name: 'KlFormItem',
@@ -170,6 +178,9 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
 
   @Prop({ default: undefined })
   valueFormat!: string
+
+  @Prop({ default: undefined })
+  pickerOptions!: DatePickerOptions
 
   @Provide()
   values: any = ''
@@ -240,4 +251,45 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
 .el-radio-group {
   line-height: 2.4rem;
 }
+.el-time-panel__content::after, .el-time-panel__content::before {
+  margin-top: -8px;
+}
+.el-picker-panel {
+  color: inherit;
+}
+.el-date-table th {
+  color: inherit;
+}
+.el-date-picker__header-label {
+  color: inherit;
+}
+.el-picker-panel__icon-btn {
+  color: inherit;
+}
+.el-date-table td.next-month, .el-date-table td.prev-month {
+  opacity: .6;
+  // color: #C0C4CC;
+}
+.el-time-spinner__item {
+  color: inherit;
+}
+.el-time-spinner__item.active:not(.disabled) {
+  color: inherit;
+}
+.el-time-panel__btn {
+  color: inherit;
+}
+.el-month-table td .cell {
+  color: inherit;
+}
+.el-year-table td .cell {
+  color: inherit;
+}
+.el-picker-panel [slot=sidebar], .el-picker-panel__sidebar {
+  background-color: inherit;
+}
+.el-picker-panel__shortcut {
+  color: inherit;
+}
+
 </style>

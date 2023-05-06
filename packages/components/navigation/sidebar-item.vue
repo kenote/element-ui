@@ -30,7 +30,7 @@
 <script lang="ts">
 import { Component, Prop, Mixins } from 'vue-property-decorator'
 import { ChannelDataNode, FilterQuery } from '@kenote/common'
-import type { PlusKeywordsNode } from '@/types'
+import type { PlusKeywordsNode } from '../../../types'
 import KlBaseMixin from '../../mixins/base'
 
 @Component<KlSidebarItem>({

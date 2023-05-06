@@ -33,7 +33,7 @@
 import { Component, Emit, Prop, Mixins } from 'vue-property-decorator'
 import { ChannelDataNode } from '@kenote/common'
 import SidebarItem from './sidebar-item.vue'
-import type { PlusKeywordsNode } from '@/types'
+import type { PlusKeywordsNode } from '../../../types'
 import KlBaseMixin from '../../mixins/base'
 
 @Component<KlSidebar>({

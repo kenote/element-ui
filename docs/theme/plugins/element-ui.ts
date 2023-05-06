@@ -5,6 +5,7 @@ import {
   Checkbox,
   CheckboxButton,
   CheckboxGroup,
+  DatePicker,
   Form,
   FormItem,
   Input,
@@ -24,13 +25,15 @@ import {
   Submenu,
   Switch,
   Tag,
-} from 'element-ui'
+  TimePicker
+} from 'element-ui/lib'
 
 Vue.use(Autocomplete)
 Vue.use(Button)
 Vue.use(Checkbox)
 Vue.use(CheckboxButton)
 Vue.use(CheckboxGroup)
+Vue.use(DatePicker)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
@@ -46,6 +49,7 @@ Vue.use(Select)
 Vue.use(Submenu)
 Vue.use(Switch)
 Vue.use(Tag)
+Vue.use(TimePicker)
 Vue.use(Loading.directive)
 
 Vue.prototype.$message = Message
