@@ -271,3 +271,4 @@ export default class Demo extends Vue {
 | align | 对齐方式 | `string` | `left, center, right` | `left` |
 | clearable | 是否显示清除按钮 | `boolean` | -- | `true` |
 | editable | 文本框可输入 | `boolean` | -- | `true` |
+| defaultTime | 选中日期后的默认具体时刻 | `string` | 形如`12:00:00`的字符串 | -- |

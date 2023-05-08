@@ -229,6 +229,13 @@ export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
             route: '/components/date-picker',
             description: '日期选择器'
           },
+          {
+            key: 'daterange-picker',
+            name: 'DaterangePicker',
+            keywords: [ 'components', '组件', 'form', '表单', 'date', '日期', 'range', '范围' ],
+            route: '/components/daterange-picker',
+            description: '日期范围选择器'
+          },
         ]
       },
       {

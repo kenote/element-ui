@@ -26,7 +26,7 @@ import {
   Switch,
   Tag,
   TimePicker
-} from 'element-ui/lib'
+} from 'element-ui'
 
 Vue.use(Autocomplete)
 Vue.use(Button)

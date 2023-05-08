@@ -104,9 +104,28 @@
     :align="options?.align"
     :clearable="options?.clearable"
     :editable="options?.editable"
+    :default-time="options?.defaultTime"
     :readonly="readonly"
     />
-
+  <!-- 日期范围选择 -->
+  <el-date-picker v-else-if="['datetimerange', 'daterange', 'monthrange'].includes(type)"
+    v-model="values"
+    :type="type"
+    :style="style"
+    :start-placeholder="placeholder?.[0]"
+    :end-placeholder="placeholder?.[1]"
+    :disabled="disabled"
+    :format="format"
+    :value-format="valueFormat"
+    :size="size"
+    :picker-options="pickerOptions"
+    :align="options?.align"
+    :clearable="options?.clearable"
+    :editable="options?.editable"
+    :range-separator="options?.rangeSeparator"
+    :default-time="options?.defaultTime"
+    :readonly="readonly"
+    />
   
   <!-- 单行输入框 -->
   <el-input v-else
@@ -291,5 +310,13 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
 .el-picker-panel__shortcut {
   color: inherit;
 }
-
+.el-range-editor.el-input__inner {
+  padding: 3px 0 3px 10px;
+}
+.el-date-editor .el-range-separator {
+  color: inherit;
+}
+.el-date-range-picker__time-header>.el-icon-arrow-right {
+  color: inherit;
+}
 </style>

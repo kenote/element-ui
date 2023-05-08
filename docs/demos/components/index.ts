@@ -6,3 +6,4 @@ export { default as DcSidebar } from './sidebar.vue'
 export { default as DcFormItem } from './form-item.vue'
 
 export * from './date-picker'
+export * from './daterange-picker'
