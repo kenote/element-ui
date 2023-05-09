@@ -126,6 +126,37 @@
     :default-time="options?.defaultTime"
     :readonly="readonly"
     />
+  <!-- 时间选择 -->
+  <el-time-picker v-else-if="type == 'time'"
+    v-model="values"
+    :style="style"
+    :placeholder="placeholder"
+    :disabled="disabled"
+    :value-format="valueFormat"
+    :size="size"
+    :picker-options="pickerOptions"
+    :align="options?.align"
+    :clearable="options?.clearable"
+    :editable="options?.editable"
+    :arrow-control="options?.arrowControl"
+    :readonly="readonly"
+    />
+  <!-- 时间范围选择 -->
+  <el-time-picker v-else-if="type == 'timerange'" is-range
+    v-model="values"
+    :style="style"
+    :start-placeholder="placeholder?.[0]"
+    :end-placeholder="placeholder?.[1]"
+    :disabled="disabled"
+    :value-format="valueFormat"
+    :size="size"
+    :picker-options="pickerOptions"
+    :align="options?.align"
+    :clearable="options?.clearable"
+    :editable="options?.editable"
+    :arrow-control="options?.arrowControl"
+    :readonly="readonly"
+    />
   
   <!-- 单行输入框 -->
   <el-input v-else
@@ -270,9 +301,13 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
 .el-radio-group {
   line-height: 2.4rem;
 }
-.el-time-panel__content::after, .el-time-panel__content::before {
-  margin-top: -8px;
+
+.el-time-spinner__wrapper:not(.is-arrow) {
+  &>.el-time-spinner__list::after, .el-time-spinner__list::before {
+    margin-top: -8px;
+  }
 }
+
 .el-picker-panel {
   color: inherit;
 }

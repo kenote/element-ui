@@ -1,4 +1,4 @@
-# DatarangePicker
+# DataPicker [范围]
 
 日期范围选择器
 
@@ -210,7 +210,7 @@ export default class Demo extends Vue {
 | 参数 | 说明 | 类型 | 可选值 | 默认值 |
 | ------ | ------ | ------ | ------ | :------: |
 | text | 标题文本 | `string` | -- | -- |
-| onClick | 选中后的回调函数，参数是 vm，可通过触发 'pick' 事件设置选择器的值。例如 vm.$emit('pick', [new Date(), new Date()]) | `Function` | -- | -- |
+| onClick | 选中后的回调函数，参数是 vm，可通过触发 'pick' 事件设置选择器的值。例如 vm.$emit('pick', [new Date()]) | `Function` | -- | -- |
 
 ### Events
 

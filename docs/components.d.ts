@@ -28,6 +28,7 @@ declare module '@vue/runtime-core' {
     ElSubmenu: typeof import('element-ui/lib/submenu')['default']
     ElSwitch: typeof import('element-ui/lib/switch')['default']
     ElTag: typeof import('element-ui/lib/tag')['default']
+    ElTimePicker: typeof import('element-ui/lib/time-picker')['default']
     KlChannelSearchbar: typeof import('./../packages')['ChannelSearchbar']
     KlDrawer: typeof import('./../packages')['Drawer']
     KlFormItem: typeof import('./../packages')['FormItem']

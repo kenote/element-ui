@@ -7,3 +7,4 @@ export { default as DcFormItem } from './form-item.vue'
 
 export * from './date-picker'
 export * from './daterange-picker'
+export * from './time-picker'

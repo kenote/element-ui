@@ -47,8 +47,8 @@ body, #app {
     }
 
     td, th {
-      border: none;
-      white-space: nowrap;
+      // border: none;
+      white-space: break-spaces;
     }
 
     th {
@@ -240,13 +240,16 @@ body, #app {
   border-bottom: solid 1px var(--kenote-popper-bc);
 }
 
-.el-time-spinner__item:hover:not(.disabled):not(.active){
-  background:var(--kenote-popper-hover);
+.el-time-spinner__item:hover:not(.disabled):not(.active) {
+  background:var(--kenote-popper-hover) !important;
 }
 .el-time-panel__footer {
   background-color: var(--kenote-popper-bg);
   border-top: solid 1px var(--kenote-popper-bc);
   
+}
+.el-time-range-picker__body {
+  border: solid 1px var(--kenote-popper-bc);
 }
 
 .el-date-table td.selected div {
