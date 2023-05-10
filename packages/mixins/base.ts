@@ -1,5 +1,5 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import { isDisabled, parseProps, toFormatString } from '../'
+import { isDisabled, parseProps, toFormatString, getFilter } from '../'
 import _ from 'lodash'
 
 @Component<KlBaseMixin>({
@@ -17,6 +17,8 @@ export default class KlBaseMixin extends Vue {
   parseProps = parseProps
 
   toFormatString = toFormatString
+
+  getFilter = getFilter
 
   parseTag (value: string, name: string): { label?: string, type?: '' | 'success' | 'info' | 'warning' | 'danger'} {
     let [ label, type ] = value.split('_')

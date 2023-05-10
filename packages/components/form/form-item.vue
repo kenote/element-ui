@@ -85,9 +85,13 @@
     collapse-tags >
     <template v-for="(item, key) in propData">
       <el-option-group :key="item.label" v-if="'options' in item" :label="item.label">
-        <el-option v-for="(ele, ekey) in item.options" :key="ekey" :label="toFormatString(props)(ele, format)" :value="ele.key" :disabled="ele?.disabled"></el-option>
+        <el-option v-for="(ele, ekey) in item.options" :key="ekey" :label="toFormatString(props)(ele, format)" :value="ele.key" :disabled="ele?.disabled">
+          <div v-if="options?.template" v-html="toFormatString(props)(item, options?.template)" ></div>
+        </el-option>
       </el-option-group>
-      <el-option v-else :key="key" :label="toFormatString(props)(item, format)" :value="item.key" :disabled="item?.disabled"></el-option>
+      <el-option v-else :key="key" :label="toFormatString(props)(item, format)" :value="item.key" :disabled="item?.disabled">
+        <div v-if="options?.template" v-html="toFormatString(props)(item, options?.template)" ></div>
+      </el-option>
     </template>
   </el-select>
   <!-- 单日期选择 -->
@@ -178,20 +182,44 @@
 
 <script lang="ts">
 import { Component, Emit, Model, Prop, Provide, Vue, Watch, Mixins } from 'vue-property-decorator'
-import type { FormItemType, PropDataItem } from '../../../types'
+import type { FormItemType, PropDataItem, RequestConfig } from '../../../types'
 import ruleJudgment from 'rule-judgment'
-import { isNumber, merge, assign, pickBy, identity } from 'lodash'
+import { isNumber, merge, assign, pickBy, identity, isString, isFunction } from 'lodash'
 import KlBaseMixin from '../../mixins/base'
-import { isDisabled, parseProps } from '../../'
+import { isDisabled, parseProps, parseTemplate } from '../../'
 import { format } from 'path'
 import { DatePickerOptions } from 'element-ui/types/date-picker'
+import jsYaml from 'js-yaml'
+import { FilterQuery } from '@kenote/common'
 
 @Component<KlFormItem>({
   name: 'KlFormItem',
   created () {
     this.propData = this.data?.map( parseProps<PropDataItem>(this.props) ) ?? []
+    if (this.requestOptions) {
+      this.getData(this.requestOptions, data => {
+        this.propData = data?.map( parseProps<PropDataItem>(this.props) ) ?? []
+      })
+    }
     this.values = this.getValue(this.value)
     this.updateStyle({ width: this.toStyleSize(this.width) })
+    let { filterMethod } = this.options ?? {}
+    if (filterMethod) {
+      let __filterMethod = filterMethod
+      if (isString(filterMethod)) {
+        try {
+          __filterMethod = jsYaml.load(filterMethod)
+        } catch (error) {
+          if (error instanceof Error) {
+            console.error(error.message)
+          }
+        }
+      }
+      if (isFunction(__filterMethod)) {
+        this.filterMethod = __filterMethod
+      }
+    }
+    //
   }
 })
 export default class KlFormItem extends Mixins(KlBaseMixin) {
@@ -232,6 +260,9 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
   @Prop({ default: undefined })
   pickerOptions!: DatePickerOptions
 
+  @Prop({ default: undefined })
+  requestOptions!: RequestConfig
+
   @Provide()
   values: any = ''
 
@@ -241,6 +272,12 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
   @Provide()
   propData: Record<string, any>[] = []
 
+  @Provide()
+  filterMethod: Function | null = null
+
+  @Provide()
+  filter: FilterQuery<any> = {}
+
   @Model('update')
   value!: any
 
@@ -249,6 +286,9 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
 
   @Emit('change')
   change (value: any, oldVal: any) {}
+
+  @Emit('get-data')
+  getData (request: RequestConfig, next: (data: any) => void) {}
 
   @Watch('value')
   onValueChange (val: any, oldVal: any) {

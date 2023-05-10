@@ -1,4 +1,5 @@
-import { FilterQuery } from '@kenote/common'
+import { FilterQuery, Method } from '@kenote/common'
+import { IncomingHttpHeaders } from 'http'
 
 export declare namespace Command {
 
@@ -39,6 +40,18 @@ export declare interface PropDataItem {
   key            : string
   label          : string
   disabled      ?: boolean
+}
+
+export declare interface PropDataGroup {
+  label          : string
+  options        : PropDataItem[]
+}
+
+export declare interface RequestConfig {
+  method        ?: Method
+  url           ?: string
+  headers       ?: IncomingHttpHeaders
+  parama        ?: any
 }
 
 export * from './account'
