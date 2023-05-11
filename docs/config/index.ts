@@ -216,6 +216,41 @@ export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
         name: '表单元素',
         children: [
           {
+            key: 'input',
+            name: 'Input',
+            keywords: [ 'components', '组件', 'form', '表单', 'input', '输入框' ],
+            route: '/components/input',
+            description: '文本输入框'
+          },
+          {
+            key: 'input-number',
+            name: 'InputNumber',
+            keywords: [ 'components', '组件', 'form', '表单', 'input', 'number', '输入框', '计数器' ],
+            route: '/components/input-number',
+            description: '计数器'
+          },
+          {
+            key: 'radio',
+            name: 'Radio',
+            keywords: [ 'components', '组件', 'form', '表单', 'radio', '单选框' ],
+            route: '/components/radio',
+            description: '单选框'
+          },
+          {
+            key: 'checkbox',
+            name: 'Checkbox',
+            keywords: [ 'components', '组件', 'form', '表单', 'checkbox', '多选框' ],
+            route: '/components/checkbox',
+            description: '多选框'
+          },
+          {
+            key: 'select',
+            name: 'Select',
+            keywords: [ 'components', '组件', 'form', '表单', 'select', '下拉' ],
+            route: '/components/select',
+            description: '下拉选择器'
+          },
+          {
             key: 'date-format',
             name: '日期格式',
             keywords: [ 'components', '组件', 'form', '表单', 'date', '日期', 'format', '格式' ],
