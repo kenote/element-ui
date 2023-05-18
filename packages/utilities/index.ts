@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import 'vue-router'
 import { dataNodeProxy, ChannelDataNode, FilterQuery } from '@kenote/common'
-import { assign, compact, get, isBoolean, isDate, isFunction, isNaN, isPlainObject, isString, map, merge, omit, pick, template } from 'lodash'
+import { assign, compact, get, isArray, isBoolean, isDate, isFunction, isNaN, isPlainObject, isString, map, merge, omit, pick, template, cloneDeep } from 'lodash'
 import type { Command, PlusKeywordsNode, PropDataItem } from '../../types'
 import ruleJudgment from 'rule-judgment'
 import jsYaml from 'js-yaml'
@@ -275,10 +275,16 @@ export function parseContent (path: string, env: Record<string, any>) {
 export function parseProps<T extends {}> (props?: Record<string, string>) {
   return (data: Record<string, any>) => {
     if (!props) return data as T
-    let result = data
+    let result = cloneDeep(data)
     let keys: string[] = []
     for (let [key, val] of Object.entries(props)) {
-      result[key] = /(\{)/.test(val) ? parseTemplate(val, data) : get(data, val)
+      let ret = get(data, val)
+      if (isArray(ret)) {
+        result[key] = ret?.map( v => isPlainObject(v) ? parseProps(props)(v) : v )
+      }
+      else {
+        result[key] = /(\{)/.test(val) ? parseTemplate(val, data) : ret
+      }
       if (key !== val) {
         keys.push(val)
       }

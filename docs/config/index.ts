@@ -278,6 +278,34 @@ export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
             route: '/components/time-picker',
             description: '时间选择器'
           },
+          {
+            key: 'switch',
+            name: 'Switch',
+            keywords: [ 'components', '组件', 'form', '表单', 'switch', '开关' ],
+            route: '/components/switch',
+            description: '开关 -- 表示两种相互对立的状态间的切换，多用于触发「开/关」'
+          },
+          {
+            key: 'slider',
+            name: 'Slider',
+            keywords: [ 'components', '组件', 'form', '表单', 'slider', '滑块' ],
+            route: '/components/slider',
+            description: '滑块 -- 通过拖动滑块在一个固定区间内进行选择'
+          },
+          {
+            key: 'transfer',
+            name: 'Transfer',
+            keywords: [ 'components', '组件', 'form', '表单', 'transfer', '穿梭框' ],
+            route: '/components/transfer',
+            description: '穿梭框'
+          },
+          {
+            key: 'cascader',
+            name: 'Cascader',
+            keywords: [ 'components', '组件', 'form', '表单', 'cascader', '级联选择器' ],
+            route: '/components/cascader',
+            description: '级联选择器'
+          },
         ]
       },
       {

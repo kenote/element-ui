@@ -37,9 +37,11 @@ export type FormItemType =
   | 'text'
 
 export declare interface PropDataItem {
-  key            : string
+  // key           ?: string
+  value         ?: string
   label          : string
   disabled      ?: boolean
+  children      ?: PropDataItem[]
 }
 
 export declare interface PropDataGroup {

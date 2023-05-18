@@ -17,7 +17,6 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator'
-import { PropDataItem } from '@kenote/element'
 
 @Component
 export default class Demo extends Vue {
@@ -26,13 +25,13 @@ export default class Demo extends Vue {
   value: string[] = ['1']
 
   @Provide()
-  data: PropDataItem[] = [
-    { key: '1', label: '选项一' },
-    { key: '2', label: '选项二' },
-    { key: '3', label: '选项三' },
+  data = [
+    { value: '1', label: '选项一' },
+    { value: '2', label: '选项二' },
+    { value: '3', label: '选项三' },
   ]
 
-  handleChange (value: string) {
+  handleChange (value: string[]) {
     console.log(value)
   }
 }
@@ -54,7 +53,6 @@ export default class Demo extends Vue {
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator'
-import { PropDataItem } from '@kenote/element'
 
 @Component
 export default class Demo extends Vue {
@@ -63,13 +61,13 @@ export default class Demo extends Vue {
   value: string[] = ['1']
 
   @Provide()
-  data: PropDataItem[] = [
-    { key: '1', label: '选项一' },
-    { key: '2', label: '选项二' },
-    { key: '3', label: '选项三' },
+  data = [
+    { value: '1', label: '选项一' },
+    { value: '2', label: '选项二' },
+    { value: '3', label: '选项三' },
   ]
 
-  handleChange (value: string) {
+  handleChange (value: string[]) {
     console.log(value)
   }
 }
@@ -83,8 +81,8 @@ export default class Demo extends Vue {
 | value / v-model | 绑定值 | `boolean / string / number` | -- | -- |
 | disabled | 禁用 | `boolean` | -- | `false` |
 | size | 尺寸大小 | `string` | `medium / small / mini` | -- |
-| data | 数据源 | `array[{ key, label, disabled }]` | -- | `[]` |
-| props | 数据源的字段别名 | `object{key, label, disabled}` | -- | -- |
+| data | 数据源 | `array[{ value, label, disabled }]` | -- | `[]` |
+| props | 数据源的字段别名 | `object{value, label, disabled}` | -- | -- |
 | format | 显示字符自定义格式 | `string` | -- | `{label}`
 
 ### Events

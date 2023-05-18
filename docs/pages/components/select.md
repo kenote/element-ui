@@ -18,7 +18,6 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator'
-import { PropDataItem } from '@kenote/element-ui'
 
 @Component
 export default class Demo extends Vue {
@@ -27,12 +26,12 @@ export default class Demo extends Vue {
   value: string = ''
 
   @Provide()
-  data: PropDataItem[] = [
-    { key: '1', label: '黄金糕' },
-    { key: '2', label: '双皮奶' },
-    { key: '3', label: '蚵仔煎' },
-    { key: '4', label: '龙须面' },
-    { key: '5', label: '北京烤鸭' },
+  data = [
+    { value: '1', label: '黄金糕' },
+    { value: '2', label: '双皮奶' },
+    { value: '3', label: '蚵仔煎' },
+    { value: '4', label: '龙须面' },
+    { value: '5', label: '北京烤鸭' },
   ]
 
   handleChange (value: string) {
@@ -59,7 +58,6 @@ export default class Demo extends Vue {
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator'
-import { PropDataItem } from '@kenote/element-ui'
 
 @Component
 export default class Demo extends Vue {
@@ -68,12 +66,12 @@ export default class Demo extends Vue {
   value: string = ''
 
   @Provide()
-  data: PropDataItem[] = [
-    { key: '1', label: '黄金糕' },
-    { key: '2', label: '双皮奶' },
-    { key: '3', label: '蚵仔煎' },
-    { key: '4', label: '龙须面' },
-    { key: '5', label: '北京烤鸭' },
+  data = [
+    { value: '1', label: '黄金糕' },
+    { value: '2', label: '双皮奶' },
+    { value: '3', label: '蚵仔煎' },
+    { value: '4', label: '龙须面' },
+    { value: '5', label: '北京烤鸭' },
   ]
 
   @Provide()
@@ -81,7 +79,7 @@ export default class Demo extends Vue {
     clearable: true,
     filterable: true,
     template: (`
-      <span style="float: left">{key}</span>
+      <span style="float: left">{value}</span>
       <span style="float: right; color: #8492a6; font-size: 13px">{label}</span>
     `)
   }
@@ -110,7 +108,6 @@ export default class Demo extends Vue {
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator'
-import { PropDataGroup } from '@kenote/element-ui'
 
 @Component
 export default class Demo extends Vue {
@@ -119,21 +116,21 @@ export default class Demo extends Vue {
   value: string = ''
 
   @Provide()
-  data: PropDataGroup[] = [
+  data = [
     {
       label: '热门城市',
-      options: [
-        { key: 'Shanghai', label: '上海' },
-        { key: 'Beijing', label: '北京' },
+      children: [
+        { value: 'Shanghai', label: '上海' },
+        { value: 'Beijing', label: '北京' },
       ]
     },
     {
       label: '城市名',
-      options: [
-        { key: 'Chengdu', label: '成都' },
-        { key: 'Shenzhen', label: '深圳' },
-        { key: 'Guangzhou', label: '广州' },
-        { key: 'Dalian', label: '大连' },
+      children: [
+        { value: 'Chengdu', label: '成都' },
+        { value: 'Shenzhen', label: '深圳' },
+        { value: 'Guangzhou', label: '广州' },
+        { value: 'Dalian', label: '大连' },
       ]
     },
   ]
@@ -151,7 +148,7 @@ export default class Demo extends Vue {
 </script>
 ```
 
-## 分组
+## 多选
 
 <dc-select-mult />
 
@@ -168,7 +165,6 @@ export default class Demo extends Vue {
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator'
-import { PropDataItem } from '@kenote/element-ui'
 
 @Component
 export default class Demo extends Vue {
@@ -177,12 +173,12 @@ export default class Demo extends Vue {
   value: string = ''
 
   @Provide()
-  data: PropDataItem[] = [
-    { key: '1', label: '黄金糕' },
-    { key: '2', label: '双皮奶' },
-    { key: '3', label: '蚵仔煎' },
-    { key: '4', label: '龙须面' },
-    { key: '5', label: '北京烤鸭' },
+  data = [
+    { value: '1', label: '黄金糕' },
+    { value: '2', label: '双皮奶' },
+    { value: '3', label: '蚵仔煎' },
+    { value: '4', label: '龙须面' },
+    { value: '5', label: '北京烤鸭' },
   ]
 
   @Provide()
@@ -210,9 +206,9 @@ export default class Demo extends Vue {
 | width | 宽度 (`px / pt / em / rem / %`) | `number / string` | `auto` | `100%` |
 | readonly | 是否只读 | `boolean` | -- | `false` |
 | size | 尺寸大小 | `string` | `medium / small / mini` | -- |
-| data | 数据源 | `array[{ key, label, disabled }]` | -- | `[]` |
-| props | 数据源的字段别名 | `object{key, label, disabled}` | -- | -- |
-| format | 显示字符自定义格式 | `string` | -- | `{label}`
+| data | 数据源 | `array[{ value, label, disabled }]` | -- | `[]` |
+| props | 数据源的字段别名 | `object{value, label, disabled}` | -- | -- |
+| format | 显示字符自定义格式 | `string` | -- | `{label}` |
 
 ### Events
 

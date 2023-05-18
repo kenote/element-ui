@@ -1,7 +1,6 @@
 <template>
   <div>
-    <kl-form-item type="select" v-model="value" 
-      placeholder="请选择项目" 
+    <kl-form-item type="transfer" v-model="value"
       :data="data"
       @change="handleChange" />
   </div>
@@ -14,7 +13,7 @@ import { Component, Provide, Vue } from 'vue-property-decorator'
 export default class Demo extends Vue {
 
   @Provide()
-  value: string = ''
+  value: string[] = ['1']
 
   @Provide()
   data = [
@@ -25,7 +24,7 @@ export default class Demo extends Vue {
     { value: '5', label: '北京烤鸭' },
   ]
 
-  handleChange (value: string) {
+  handleChange (value: string[]) {
     console.log(value)
   }
 }

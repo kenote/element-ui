@@ -18,9 +18,9 @@ export default class Demo extends Vue {
 
   @Provide()
   data: PropDataItem[] = [
-    { key: '1', label: '选项一' },
-    { key: '2', label: '选项二' },
-    { key: '3', label: '选项三' },
+    { value: '1', label: '选项一' },
+    { value: '2', label: '选项二' },
+    { value: '3', label: '选项三' },
   ]
 
   handleChange (value: string) {

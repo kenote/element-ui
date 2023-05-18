@@ -2,6 +2,8 @@ import Vue from 'vue'
 import {
   Autocomplete,
   Button,
+  Cascader,
+  CascaderPanel,
   Checkbox,
   CheckboxButton,
   CheckboxGroup,
@@ -22,14 +24,18 @@ import {
   RadioButton,
   RadioGroup,
   Select,
+  Slider,
   Submenu,
   Switch,
   Tag,
-  TimePicker
+  TimePicker,
+  Transfer
 } from 'element-ui'
 
 Vue.use(Autocomplete)
 Vue.use(Button)
+Vue.use(Cascader)
+Vue.use(CascaderPanel)
 Vue.use(Checkbox)
 Vue.use(CheckboxButton)
 Vue.use(CheckboxGroup)
@@ -46,10 +52,12 @@ Vue.use(Radio)
 Vue.use(RadioButton)
 Vue.use(RadioGroup)
 Vue.use(Select)
+Vue.use(Slider)
 Vue.use(Submenu)
 Vue.use(Switch)
 Vue.use(Tag)
 Vue.use(TimePicker)
+Vue.use(Transfer)
 Vue.use(Loading.directive)
 
 Vue.prototype.$message = Message

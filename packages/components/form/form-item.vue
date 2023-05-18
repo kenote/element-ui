@@ -50,12 +50,12 @@
   <!-- 单选框 -->
   <el-radio-group v-else-if="/^(radio)/.test(type)" v-model="values" :disabled="disabled" :size="size" :style="style">
     <template v-if="/(button)$/.test(type)">
-      <el-radio-button v-for="(item, key) in propData" :key="key" :label="item.key" :disabled="item.disabled">
+      <el-radio-button v-for="(item, key) in propData" :key="key" :label="item.value" :disabled="item.disabled">
         {{ toFormatString(props)(item, format) }}
       </el-radio-button>
     </template>
     <template v-else>
-      <el-radio v-for="(item, key) in propData" :key="key" :label="item.key" :disabled="item.disabled">
+      <el-radio v-for="(item, key) in propData" :key="key" :label="item.value" :disabled="item.disabled">
         {{ toFormatString(props)(item, format) }}
       </el-radio>
     </template>
@@ -63,12 +63,12 @@
   <!-- 多选框 -->
   <el-checkbox-group v-else-if="/^(checkbox)/.test(type)" v-model="values" :disabled="disabled" :size="size" :style="style">
     <template v-if="/(button)$/.test(type)">
-      <el-checkbox-button v-for="(item, key) in propData" :key="key" :label="item.key" :disabled="item.disabled">
+      <el-checkbox-button v-for="(item, key) in propData" :key="key" :label="item.value" :disabled="item.disabled">
         {{ toFormatString(props)(item, format) }}
       </el-checkbox-button>
     </template>
     <template v-else>
-      <el-checkbox v-for="(item, key) in propData" :key="key" :label="item.key" :disabled="item.disabled">
+      <el-checkbox v-for="(item, key) in propData" :key="key" :label="item.value" :disabled="item.disabled">
         {{ toFormatString(props)(item, format) }}
       </el-checkbox>
     </template>
@@ -84,12 +84,12 @@
     :popper-class="options?.popperClass"
     collapse-tags >
     <template v-for="(item, key) in propData">
-      <el-option-group :key="item.label" v-if="'options' in item" :label="item.label">
-        <el-option v-for="(ele, ekey) in item.options" :key="ekey" :label="toFormatString(props)(ele, format)" :value="ele.key" :disabled="ele?.disabled">
+      <el-option-group :key="item.label" v-if="'children' in item" :label="item.label">
+        <el-option v-for="(ele, ekey) in item.children" :key="ekey" :label="toFormatString(props)(ele, format)" :value="ele?.value" :disabled="ele?.disabled">
           <div v-if="options?.template" v-html="toFormatString(props)(item, options?.template)" ></div>
         </el-option>
       </el-option-group>
-      <el-option v-else :key="key" :label="toFormatString(props)(item, format)" :value="item.key" :disabled="item?.disabled">
+      <el-option v-else :key="key" :label="toFormatString(props)(item, format)" :value="item.value" :disabled="item?.disabled">
         <div v-if="options?.template" v-html="toFormatString(props)(item, options?.template)" ></div>
       </el-option>
     </template>
@@ -161,6 +161,78 @@
     :arrow-control="options?.arrowControl"
     :readonly="readonly"
     />
+  <!-- 开关 -->
+  <el-switch v-else-if="type == 'switch'"
+    v-model="values"
+    :disabled="disabled"
+    :active-text="options?.activeText"
+    :inactive-text="options?.inactiveText"
+    :active-color="options?.activeColor"
+    :inactive-color="options?.inactiveColor"
+    :active-value="options?.activeValue"
+    :inactive-value="options?.inactiveValue"
+    :active-icon-class="options?.activeIconClass"
+    :inactive-icon-class="options?.inactiveIconClass"
+    />
+  <!-- 滑块 -->
+  <el-slider v-else-if="type == 'slider'"
+    v-model="values"
+    :disabled="disabled"
+    :min="options?.min"
+    :max="options?.max"
+    :step="options?.step"
+    :range="options?.range"
+    :marks="options?.marks"
+    :show-stops="options?.showStops"
+    :show-tooltip="options?.showTooltip"
+    :vertical="options?.vertical"
+    />
+  <!-- 穿梭框 -->
+  <el-form v-else-if="type == 'transfer'" :disabled="disabled">
+    <el-transfer
+      v-model="values"
+      :data="propData"
+      :props="toProps('key')"
+      :filterable="options?.filterable"
+      :filter-method="filterMethod"
+      :filter-placeholder="options?.filterPlaceholder"
+      :titles="options?.titles"
+      :button-texts="options?.buttonTexts"
+      :target-order="options?.targetOrder"
+      :left-default-checked="options?.leftDefaultChecked"
+      :right-default-checked="options?.rightDefaultChecked"
+      >
+      <span slot-scope="{ option }">{{ toFormatString(props)(option, format) }}</span>
+    </el-transfer>
+  </el-form>
+  <!-- 级联选择器 -->
+  <el-cascader v-else-if="type == 'cascader'"
+    v-model="values"
+    :style="style"
+    :placeholder="placeholder"
+    :disabled="disabled"
+    :options="propData"
+    :props="props"
+    :clearable="options?.clearable"
+    :filterable="options?.filterable"
+    :filter-method="filterMethod"
+    :show-all-levels="options?.showAllLevels"
+    :separator="options?.separator"
+    :size="size"
+    collapse-tags />
+  <!-- 级联选择面板 -->
+  <div v-else-if="type == 'cascader-panel'" v-bind:style="{
+    width: 'fit-content',
+    ...(disabled ? { cursor: 'not-allowed', opacity: .5 } : null)
+  }">
+    <el-cascader-panel
+      v-model="values"
+      :style="{ display: 'inline-flex', ...style, pointerEvents: disabled ? 'none' : 'inherit' }"
+      :options="propData"
+      :props="props"
+      :size="size"
+      />
+  </div>
   
   <!-- 单行输入框 -->
   <el-input v-else
@@ -184,10 +256,9 @@
 import { Component, Emit, Model, Prop, Provide, Vue, Watch, Mixins } from 'vue-property-decorator'
 import type { FormItemType, PropDataItem, RequestConfig } from '../../../types'
 import ruleJudgment from 'rule-judgment'
-import { isNumber, merge, assign, pickBy, identity, isString, isFunction } from 'lodash'
+import { isNumber, merge, assign, pickBy, identity, isString, isFunction, unset } from 'lodash'
 import KlBaseMixin from '../../mixins/base'
 import { isDisabled, parseProps, parseTemplate } from '../../'
-import { format } from 'path'
 import { DatePickerOptions } from 'element-ui/types/date-picker'
 import jsYaml from 'js-yaml'
 import { FilterQuery } from '@kenote/common'
@@ -195,6 +266,9 @@ import { FilterQuery } from '@kenote/common'
 @Component<KlFormItem>({
   name: 'KlFormItem',
   created () {
+    if (['transfer'].includes(this.type)) {
+      this.propKey = 'key'
+    }
     this.propData = this.data?.map( parseProps<PropDataItem>(this.props) ) ?? []
     if (this.requestOptions) {
       this.getData(this.requestOptions, data => {
@@ -224,6 +298,8 @@ import { FilterQuery } from '@kenote/common'
 })
 export default class KlFormItem extends Mixins(KlBaseMixin) {
 
+  [x: string]: any
+
   @Prop({ default: 'input' })
   type!: FormItemType
 
@@ -246,10 +322,10 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
   options!: Record<string, any>
 
   @Prop({ default: undefined })
-  data!: Record<string, any>[]
+  data!: Array<PropDataItem & { [x: string]: string }>
 
   @Prop({ default: undefined })
-  props!: Partial<Record<keyof PropDataItem, string>>
+  props!: Partial<Record<keyof PropDataItem, string> & { [x: string]: any }>
 
   @Prop({ default: undefined })
   format!: string
@@ -270,13 +346,16 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
   style: Record<string, any> = {}
 
   @Provide()
-  propData: Record<string, any>[] = []
+  propData: Array<PropDataItem> = []
 
   @Provide()
   filterMethod: Function | null = null
 
   @Provide()
   filter: FilterQuery<any> = {}
+
+  @Provide()
+  propKey: string = 'value'
 
   @Model('update')
   value!: any
@@ -309,6 +388,8 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
     this.updateStyle({ width: this.toStyleSize(this.width) })
   }
 
+  merge = merge
+
   getValue (value: any) {
     let _value = ruleJudgment({ $regex: /transfer|checkbox|datanode/i })(this.type) ? [] : value
     return value ?? _value
@@ -319,7 +400,7 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
     if (typeof value == 'number' || /^([0-9]+)?(\.)?([0-9]+)$/.test(value)) {
       return `${value}px`
     }
-    if (/^([0-9]+)?(\.)?([0-9]+)(px|pt|em|rem|%)$|^auto$/.test(value)) {
+    if (/^([0-9]+)?(\.)?([0-9]+)(px|pt|em|rem|%)$|^(auto|fit-content)$/.test(value)) {
       return value
     }
     return undefined
@@ -327,6 +408,14 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
 
   updateStyle (values?: Record<string, any>) {
     this.style = pickBy({...this.style, ...values}, v => v !== undefined)
+  }
+
+  toProps (name: string) {
+    let props = merge(this.props, { [name]: !this.props?.value || this.props?.value == name ? 'value' : this.props?.value })
+    if (!name || name !== 'value') {
+      unset(props, 'value')
+    }
+    return props
   }
 }
 </script>
@@ -393,5 +482,29 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
 }
 .el-date-range-picker__time-header>.el-icon-arrow-right {
   color: inherit;
+}
+.el-transfer-panel__filter {
+  margin: 0;
+  padding: 15px;
+  .el-input__prefix {
+    left: 15px;
+  }
+}
+.el-scrollbar__wrap {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin-bottom: 0 !important;
+
+  // ul {
+  //   padding: 0;
+  // }
+}
+.el-cascader-menu__list {
+  padding: 6px 0 !important;
+  margin: 0 !important;
+}
+.el-cascader-menu__wrap {
+  margin-bottom: 15px !important;
+  height: 204px !important;
 }
 </style>

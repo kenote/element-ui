@@ -286,6 +286,61 @@ body, #app {
   background-color: var(--kenote-popper-hover);
 }
 
+.el-transfer-panel {
+  background-color: var(--kenote-popper-bg);
+  border-color: var(--kenote-bc);
+  
+  .el-transfer-panel__header {
+    background-color: var(--kenote-input-bg);
+    border-color: var(--kenote-bc);
+
+    .el-checkbox .el-checkbox__label {
+      color: var(--kenote-input-text);
+    }
+  }
+}
+.el-transfer__button.is-disabled, .el-transfer__button.is-disabled:hover {
+  border-color: var(--kenote-bc);
+  background-color: var(--kenote-input-bg);
+  // color: #C0C4CC;
+}
+
+.el-checkbox__label {
+  color: var(--kenote-input-text);
+  opacity: .7;
+}
+
+.el-cascader-menu {
+  border-color: var(--kenote-bc);
+  color: var(--kenote-popper-text);
+}
+.el-cascader-node {
+
+  &.is-disabled {
+    color: var(--kenote-paratext);
+  }
+
+  &.in-active-path {
+    background-color: transparent;
+  }
+
+  &:hover {
+    background-color: var(--kenote-popper-hover) !important;
+  }
+
+  &:not(.is-disabled) {
+
+    &:focus, &:hover {
+      background-color: transparent;
+    }
+  }
+}
+.el-cascader-panel.is-bordered {
+  border-color: var(--kenote-bc);
+  background-color: var(--kenote-popper-bg);
+}
+// .el-cascader-node:not(.is-disabled):focus, .el-cascader-node:not(.is-disabled):hover
+
 .searchbar-popper {
   background-color: var(--kenote-popper-bg);
   border-color: var(--kenote-popper-bc);
