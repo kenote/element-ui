@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import 'vue-router'
 import { dataNodeProxy, ChannelDataNode, FilterQuery } from '@kenote/common'
-import { assign, compact, get, isArray, isBoolean, isDate, isFunction, isNaN, isPlainObject, isString, map, merge, omit, pick, template, cloneDeep } from 'lodash'
-import type { Command, PlusKeywordsNode, PropDataItem } from '../../types'
+import { assign, compact, get, isArray, isBoolean, isDate, isFunction, isNaN, isPlainObject, isString, map, merge, omit, template, cloneDeep } from 'lodash'
+import type { Command, PlusKeywordsNode, PropDataItem, Verify } from '../../types'
 import ruleJudgment from 'rule-judgment'
 import jsYaml from 'js-yaml'
 import nunjucks from 'nunjucks'
@@ -95,7 +95,7 @@ export function filterChannelDataNode (data: ChannelDataNode<PlusKeywordsNode>[]
  * @returns 
  */
 export function isDisabled (env?: Record<string, any>) {
-  return (disabled: boolean | FilterQuery<any> | string, props?: Record<string, any>) => {
+  return (disabled?: boolean | FilterQuery<any> | string, props?: Record<string, any>) => {
     if (!disabled) return false
     let query = disabled
     let data = assign({}, env, props)
@@ -115,7 +115,7 @@ export function isDisabled (env?: Record<string, any>) {
  * @param env 
  */
 export function isFilter (env?: Record<string, any>) {
-  return (conditions: FilterQuery<any> | string, props?: Record<string, any>) => {
+  return (conditions?: FilterQuery<any> | string, props?: Record<string, any>) => {
     if (!conditions) return true
     let query = conditions
     let data = assign({}, env, props)
@@ -133,7 +133,7 @@ export function isFilter (env?: Record<string, any>) {
  * @param conditions 
  * @param props 
  */
-export function getFilter (conditions: FilterQuery<any> | string, props: Record<string, any> = {}) {
+export function getFilter (conditions?: FilterQuery<any> | string, props: Record<string, any> = {}) {
   if (!conditions) return (data: any) => true
   let query: FilterQuery<any> = conditions as FilterQuery<any>
   if (isString(conditions)) {
@@ -148,7 +148,7 @@ export function getFilter (conditions: FilterQuery<any> | string, props: Record<
  * @param conditions 
  * @param props 
  */
-export function getConditions (conditions: FilterQuery<any> | string, props: Record<string, any> = {}) {
+export function getConditions (conditions?: FilterQuery<any> | string, props: Record<string, any> = {}) {
   if (!conditions) return null
   let query = conditions
   if (isString(conditions)) {
@@ -351,4 +351,58 @@ export function toFormatString (props?: Partial<Record<keyof PropDataItem, strin
     }
     return template(format, { interpolate: /{([\s\S]+?)}/g })(data)
   }
+}
+
+/**
+ * 转换样式尺寸大小
+ * @param value 
+ * @returns 
+ */
+export function toStyleSize (value?: number | string) {
+  if (!value) return undefined
+  if (typeof value == 'number' || /^([0-9]+)?(\.)?([0-9]+)$/.test(value)) {
+    return `${value}px`
+  }
+  if (/^([0-9]+)?(\.)?([0-9]+)(px|pt|em|rem|%)$|^(auto|fit-content)$/.test(value)) {
+    return value
+  }
+  return undefined
+}
+
+/**
+ * 解析验证规则
+ * @param validate 
+ * @returns 
+ */
+export function parseRules (validate: Record<string, Function>) {
+  return (rules: Record<string, Verify.Rule[]>, self?: any) => {
+    if (!rules) return rules
+    for (let [key, rule] of Object.entries(rules)) {
+      rules[key] = rule.map( item => {
+        if (isArray(item.validator)) {
+          let [ name, ...props ] = item.validator
+          let validator = validate?.[name as string]
+          if (validator) {
+            return merge(item, { validator: validator(...props, self)})
+          }
+        }
+        return item
+      })
+    }
+    return rules
+  }
+}
+
+/**
+ * 解析参数
+ * @param params 
+ * @returns 
+ */
+export function parseParams (params: any) {
+  return (data?: Record<string, any>) => {
+    let parseData = merge(data, {})
+    let str = isString(params) ? params : jsYaml.safeDump(params??'')
+    let val = parseTemplate(str, parseData)
+    return (jsYaml.safeLoad(val) || parseData) as Record<string, any>
+  } 
 }

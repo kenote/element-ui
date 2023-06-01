@@ -1,3 +1,6 @@
 export { default as LoginForm } from './login.vue'
 export { default as Qrcode } from './qrcode.vue'
 export { default as FormItem } from './form-item.vue'
+export { default as Form } from './form.vue'
+export { default as DialogForm } from './dialog-form.vue'
+export { default as FormExpand } from './form-expand.vue'

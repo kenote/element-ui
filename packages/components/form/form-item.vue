@@ -253,12 +253,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Emit, Model, Prop, Provide, Vue, Watch, Mixins } from 'vue-property-decorator'
+import { Component, Emit, Model, Prop, Provide, Watch, Mixins } from 'vue-property-decorator'
 import type { FormItemType, PropDataItem, RequestConfig } from '../../../types'
 import ruleJudgment from 'rule-judgment'
-import { isNumber, merge, assign, pickBy, identity, isString, isFunction, unset } from 'lodash'
+import { merge, pickBy, isString, isFunction, unset } from 'lodash'
 import KlBaseMixin from '../../mixins/base'
-import { isDisabled, parseProps, parseTemplate } from '../../'
+import { parseProps } from '../../'
 import { DatePickerOptions } from 'element-ui/types/date-picker'
 import jsYaml from 'js-yaml'
 import { FilterQuery } from '@kenote/common'
@@ -322,7 +322,7 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
   options!: Record<string, any>
 
   @Prop({ default: undefined })
-  data!: Array<PropDataItem & { [x: string]: string }>
+  data!: Array<Partial<PropDataItem> & { [x: string]: any }>
 
   @Prop({ default: undefined })
   props!: Partial<Record<keyof PropDataItem, string> & { [x: string]: any }>
@@ -393,17 +393,6 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
   getValue (value: any) {
     let _value = ruleJudgment({ $regex: /transfer|checkbox|datanode/i })(this.type) ? [] : value
     return value ?? _value
-  }
-
-  toStyleSize (value?: number | string) {
-    if (!value) return undefined
-    if (typeof value == 'number' || /^([0-9]+)?(\.)?([0-9]+)$/.test(value)) {
-      return `${value}px`
-    }
-    if (/^([0-9]+)?(\.)?([0-9]+)(px|pt|em|rem|%)$|^(auto|fit-content)$/.test(value)) {
-      return value
-    }
-    return undefined
   }
 
   updateStyle (values?: Record<string, any>) {
@@ -506,5 +495,8 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
 .el-cascader-menu__wrap {
   margin-bottom: 15px !important;
   height: 204px !important;
+}
+.el-form-item__content {
+  padding-right: 12px;
 }
 </style>

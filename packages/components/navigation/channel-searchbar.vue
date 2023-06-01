@@ -110,7 +110,6 @@ export default class KlChannelSearchbar extends Vue {
       value: 'name', 
       key: 'key', 
       description: 'description', 
-      maps: 'maps'
     }, this.props)
     done( list.map(parseProps(props)) )
   }

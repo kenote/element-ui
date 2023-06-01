@@ -1,5 +1,7 @@
 import { FilterQuery, Method } from '@kenote/common'
 import { IncomingHttpHeaders } from 'http'
+import { DatePickerOptions } from 'element-ui/types/date-picker'
+import { FilterData, ParseData } from 'parse-string'
 
 export declare namespace Command {
 
@@ -37,23 +39,72 @@ export type FormItemType =
   | 'text'
 
 export declare interface PropDataItem {
-  // key           ?: string
   value         ?: string
   label          : string
   disabled      ?: boolean
   children      ?: PropDataItem[]
 }
 
-export declare interface PropDataGroup {
-  label          : string
-  options        : PropDataItem[]
+export declare interface FormItem {
+  key            : string
+  type           : FormItemType
+  label         ?: string
+  placeholder   ?: string | string[]
+  disabled      ?: boolean | FilterQuery<any> | string
+  width         ?: number | string
+  size          ?: string
+  readonly      ?: boolean
+  format        ?: string
+  valueFormat   ?: string
+  pickerOptions ?: DatePickerOptions
+  data          ?: Array<Partial<PropDataItem> & { [x: string]: any }>
+  props         ?: Partial<Record<keyof PropDataItem, string> & { [x: string]: any }>
+  options       ?: Record<string, any>
+  conditions    ?: FilterQuery<any> | string
+  labelOptions  ?: { key: string, options: Record<string, string> }
+  labelWidth    ?: string | number
+}
+
+export declare interface SubmitOptions {
+  reset         ?: string
+  changeSubmit  ?: string
+  next          ?: (values: any) => void
+  emits         ?: EmitOptions[]
+  hide          ?: boolean
+}
+
+export declare interface EmitOptions {
+  key            : string
+  name           : string
+  type           : 'button' | 'dropdown' | 'link-text'
+  style         ?: 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'
+  disabled      ?: boolean | FilterQuery<any> | string
+  children      ?: Omit<EmitOptions, 'type' | 'children'>[]
+  command       ?: string
+  conditions    ?: FilterQuery<any> | string
+}
+
+export declare namespace Verify {
+
+  type Rule = Partial<Omit<FilterData.rule, 'validator'>> & Verify.PlusFields
+
+  type Validator = (rule: any, value: any, done: (message?: string) => any) => (message?: string) => any
+  type PromiseValidtor = (rule: any, value: any, done: (message?: string) => any) => Promise<(message?: string) => any>
+
+  interface PlusFields {
+    type          ?: 'string' | 'number' | 'boolean' | 'method' | 'regexp' | 'integer' | 'float' | 'array' | 'object' | 'enum' | 'data' | 'url' | 'hex' | 'email'
+    trigger       ?: 'blur' | 'change' | Array<'blur' | 'change'>
+    validator     ?: Validator | PromiseValidtor | Array<string | number | boolean | null>
+    field         ?: string
+    fullField     ?: string
+  }
 }
 
 export declare interface RequestConfig {
   method        ?: Method
   url           ?: string
   headers       ?: IncomingHttpHeaders
-  parama        ?: any
+  params        ?: any
 }
 
 export * from './account'
@@ -73,5 +124,7 @@ export {
   parseTemplate,
   parseMouseEvent,
   runCommand,
-  toFormatString
+  toFormatString,
+  toStyleSize,
+  parseRules
 } from './utilities'

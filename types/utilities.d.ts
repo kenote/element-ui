@@ -1,6 +1,6 @@
 
 import { ChannelDataNode, FilterQuery } from '@kenote/common'
-import { Command, PlusKeywordsNode, PropDataItem } from '.'
+import { Command, PlusKeywordsNode, PropDataItem, Verify } from './'
 import nunjucks from 'nunjucks'
 
 /**
@@ -56,7 +56,7 @@ export declare function parseTemplate (tpl: string, context: object, opts: nunju
  * @param env 
  * @returns 
  */
-export declare function isDisabled (): (disabled: boolean | FilterQuery<any> | string, props?: Record<string, any>) => boolean
+export declare function isDisabled (): (disabled?: boolean | FilterQuery<any> | string, props?: Record<string, any>) => boolean
 export declare function isDisabled (env: Record<string, any>): (disabled: boolean | FilterQuery<any> | string, props?: Record<string, any>) => boolean
 
 /**
@@ -64,24 +64,24 @@ export declare function isDisabled (env: Record<string, any>): (disabled: boolea
  * @param conditions 
  * @param env 
  */
-export declare function isFilter (): (conditions: FilterQuery<any> | string, props?: Record<string, any>) => boolean
-export declare function isFilter (env: Record<string, any>): (conditions: FilterQuery<any> | string, props?: Record<string, any>) => boolean
+export declare function isFilter (): (conditions?: FilterQuery<any> | string, props?: Record<string, any>) => boolean
+export declare function isFilter (env: Record<string, any>): (conditions?: FilterQuery<any> | string, props?: Record<string, any>) => boolean
 
 /**
  * 获取过滤器
  * @param conditions 
  * @param props 
  */
-export declare function getFilter(conditions: FilterQuery<any>): (data: any) => boolean
-export declare function getFilter(conditions: string, props: Record<string, any>): (data: any) => boolean
+export declare function getFilter(conditions?: FilterQuery<any>): (data: any) => boolean
+export declare function getFilter(conditions?: string, props?: Record<string, any>): (data: any) => boolean
 
 /**
  * 获取过滤条件
  * @param conditions 
  * @param props 
  */
-export declare function getConditions(conditions: FilterQuery<any>): FilterQuery<any> | null
-export declare function getConditions(conditions: string, props: Record<string, any>): FilterQuery<any> | null
+export declare function getConditions(conditions?: FilterQuery<any>): FilterQuery<any> | null
+export declare function getConditions(conditions?: string, props?: Record<string, any>): FilterQuery<any> | null
 
 /**
  * 映射对象
@@ -106,3 +106,26 @@ export declare function toFormatString (): (data: Record<string, any>) => string
 export declare function toFormatString (): (data: Record<string, any>, format: string) => string
 export declare function toFormatString (props: Partial<Record<keyof PropDataItem, string>>): (data: Record<string, any>) => string
 export declare function toFormatString (props: Partial<Record<keyof PropDataItem, string>>): (data: Record<string, any>, format: string) => string
+
+/**
+ * 转换样式尺寸大小
+ * @param value 
+ * @returns 
+ */
+export declare function toStyleSize(value?: number | string): string | undefined
+
+/**
+ * 解析验证规则
+ * @param validate 
+ * @returns 
+ */
+export declare function parseRules(validate: Record<string, Function>): (rules: Record<string, Verify.Rule[]>) => Record<string, Verify.Rule[]>
+export declare function parseRules(validate: Record<string, Function>): (rules: Record<string, Verify.Rule[]>, self?: any) => Record<string, Verify.Rule[]>
+
+/**
+ * 解析参数
+ * @param params 
+ * @returns 
+ */
+export declare function parseParams(params: any): () => Record<string, any>
+export declare function parseParams(params: any): (data: Record<string, any>) => Record<string, any>
