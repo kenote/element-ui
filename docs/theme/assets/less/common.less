@@ -1,7 +1,6 @@
 @import './var.less';
 
 
-
 html {
   height: 100%;
   font-size: 16px;
@@ -167,7 +166,7 @@ body, #app {
   border: 1px solid var(--kenote-popper-bc);
   
 
-  .el-select-dropdown__item {
+  .el-select-dropdown__item, .el-dropdown-menu__item {
     color: var(--kenote-popper-text) !important;
     background-color: var(--kenote-popper-bg);
 
@@ -178,6 +177,10 @@ body, #app {
 
     &.hover, &:hover {
       background-color: var(--kenote-popper-hover) !important;
+    }
+
+    &.is-disabled {
+      color: #bbb !important;
     }
   }
 
@@ -299,11 +302,7 @@ body, #app {
     }
   }
 }
-.el-transfer__button.is-disabled, .el-transfer__button.is-disabled:hover {
-  border-color: var(--kenote-bc);
-  background-color: var(--kenote-input-bg);
-  // color: #C0C4CC;
-}
+
 
 .el-checkbox__label {
   color: var(--kenote-input-text);
@@ -340,6 +339,87 @@ body, #app {
   background-color: var(--kenote-popper-bg);
 }
 // .el-cascader-node:not(.is-disabled):focus, .el-cascader-node:not(.is-disabled):hover
+.el-button:not(.el-button--primary):not(.el-button--text):not(.el-button--warning):not(.el-button--danger):not(.el-button--info):not(.el-button--success) {
+  background: var(--kenote-bg);
+  border-color: var(--kenote-bc);
+  color: var(--kenote-code-text);
+
+  &:hover {
+    background: var(--kenote-code-bg) !important;
+  }
+}
+.el-button.is-disabled.is-plain, .el-button.is-disabled.is-plain:focus, .el-button.is-disabled.is-plain:hover {
+
+  &:not(.el-button--primary):not(.el-button--text):not(.el-button--warning):not(.el-button--danger):not(.el-button--info):not(.el-button--success) {
+    background-color: var(--kenote-bg) !important;
+    border-color: var(--kenote-bc);
+    color: var(--kenote-code-text);
+  }
+}
+.el-button--success.is-plain {
+  background: #88d65c2e;
+  border-color: #8fcb7152;
+  &.is-disabled, &.is-disabled:hover {
+    color: #5dae3473;
+    background-color: #bcf79c30;
+    border-color: #8ec67336;
+  }
+}
+.el-button--primary.is-plain {
+  background: #a0c9f636;
+  border-color: #8cbcee52;
+  &.is-disabled, &.is-disabled:hover {
+    color: #4c8fd47a;
+    background-color: #bfcfe136;
+    border-color: #a2bedb42;
+  }
+}
+.el-button--warning.is-plain {
+  background: #f7e1c145;
+  border-color: #e0ac5f5e;
+  &.is-disabled, &.is-disabled:hover {
+    color: #d6933080;
+    background-color: #f8dbb14a;
+    border-color: #e3bc8452;
+  }
+}
+.el-button--danger.is-plain {
+  background: #fbb1b140;
+  border-color: #f39a9a59;
+  &.is-disabled, &.is-disabled:hover {
+    color: #ec787878;
+    background-color: #fbc6c633;
+    border-color: #e9aaaa4d;
+  }
+}
+.el-button--info.is-plain {
+  background: #d6d6d640;
+  border-color: #95969852;
+  &.is-disabled, &.is-disabled:hover {
+    color: #9499a378;
+    background-color: #cdcdcd40;
+    border-color: #b6b6ba3d;
+  }
+}
+// .el-button--primary {
+//   background-color: #409EFF;
+//   border-color: #409EFF;
+//   color: #fff;
+// }
+.form-container.border {
+  background: var(--kenote-bg);
+  border-color: var(--kenote-bc) !important;
+}
+.el-dialog {
+  background: var(--kenote-bg);
+  border: 1px solid var(--kenote-bc);
+}
+.el-dialog__title {
+  color: var(--kenote-popper-text);
+}
+.el-dialog__body {
+  color: var(--kenote-paratext);
+}
 
 .searchbar-popper {
   background-color: var(--kenote-popper-bg);

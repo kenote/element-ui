@@ -7,7 +7,12 @@ import {
   Checkbox,
   CheckboxButton,
   CheckboxGroup,
+  Col,
   DatePicker,
+  Dialog,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
   Form,
   FormItem,
   Input,
@@ -23,6 +28,7 @@ import {
   Radio,
   RadioButton,
   RadioGroup,
+  Row,
   Select,
   Slider,
   Submenu,
@@ -39,7 +45,12 @@ Vue.use(CascaderPanel)
 Vue.use(Checkbox)
 Vue.use(CheckboxButton)
 Vue.use(CheckboxGroup)
+Vue.use(Col)
 Vue.use(DatePicker)
+Vue.use(Dialog)
+Vue.use(Dropdown)
+Vue.use(DropdownItem)
+Vue.use(DropdownMenu)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
@@ -51,6 +62,7 @@ Vue.use(OptionGroup)
 Vue.use(Radio)
 Vue.use(RadioButton)
 Vue.use(RadioGroup)
+Vue.use(Row)
 Vue.use(Select)
 Vue.use(Slider)
 Vue.use(Submenu)

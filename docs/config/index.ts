@@ -181,6 +181,12 @@ export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
             route: '/components/drawer',
             description: '推拉抽屉'
           },
+          {
+            key: 'dialog',
+            name: 'Dialog',
+            route: '/components/dialog',
+            description: '对话框'
+          },
         ]
       },
       {
@@ -200,6 +206,13 @@ export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
             keywords: [ 'components', '组件', 'form', '表单', 'qrcode', '二维码' ],
             route: '/components/qrcode',
             description: '二维码'
+          },
+          {
+            key: 'form',
+            name: 'Form',
+            keywords: [ 'components', '组件', 'form', '表单' ],
+            route: '/components/form',
+            description: '表单'
           },
           {
             key: 'form-item',
