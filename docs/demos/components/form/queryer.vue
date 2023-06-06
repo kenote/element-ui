@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator'
-import { FormItem, SubmitOptions } from '@/types'
+import { FormItemColumn, SubmitOptions } from '@/types'
 
 @Component
 export default class Demo extends Vue {
@@ -31,7 +31,7 @@ export default class Demo extends Vue {
   }
 
   @Provide()
-  columns: FormItem[] = [
+  columns: FormItemColumn[] = [
     {
       key: 'start__end',
       type: 'daterange',

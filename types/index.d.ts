@@ -45,7 +45,7 @@ export declare interface PropDataItem {
   children      ?: PropDataItem[]
 }
 
-export declare interface FormItem {
+export declare interface FormItemColumn {
   key            : string
   type           : FormItemType
   label         ?: string

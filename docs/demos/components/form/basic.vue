@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator'
-import { FormItem } from '@/types'
+import { FormItemColumn } from '@/types'
 
 @Component
 export default class Demo extends Vue {
@@ -22,7 +22,7 @@ export default class Demo extends Vue {
   }
 
   @Provide()
-  columns: FormItem[] = [
+  columns: FormItemColumn[] = [
     {
       key: 'username',
       type: 'text',

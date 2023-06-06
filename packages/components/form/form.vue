@@ -64,7 +64,7 @@
 import { Component, Provide, Mixins } from 'vue-property-decorator'
 import KlFormMixin from '../../mixins/form'
 import { Form as ElForm } from 'element-ui'
-import type { FormItem, Verify, SubmitOptions } from '../../../types'
+import type { FormItemColumn, Verify, SubmitOptions } from '../../../types'
 import KlFormItem from './form-item.vue'
 import { parseRules, parseParams } from '../../'
 import { cloneDeep, map, set, pick, omit, merge, zipObject, unset, isEqual, omitBy, isUndefined, assign } from 'lodash'
@@ -115,7 +115,7 @@ export default class KlForm extends Mixins(KlFormMixin) {
             this.values = cloneDeep(this.DefaultValues)
           }
         }
-        let labelKeys = map(this.columns.filter(ruleJudgment<FormItem>({ labelOptions: { $exists: true } })), 'labelOptions.key')
+        let labelKeys = map(this.columns.filter(ruleJudgment<FormItemColumn>({ labelOptions: { $exists: true } })), 'labelOptions.key')
         values = merge(values, pick(this.values, labelKeys))
         this.submit(values, this.action, submitOptions)
       }
