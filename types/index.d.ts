@@ -75,11 +75,14 @@ export declare interface SubmitOptions {
   draft         ?: PlanOptions
 }
 
+export declare type PlanDataItem = PropDataItem & { associate?: string }
+
 export declare interface PlanOptions {
   name          ?: string
-  data          ?: PropDataItem[]
+  data          ?: PlanDataItem[]
   placeholder   ?: string
   width         ?: number | string
+  associate     ?: string
 }
 
 export declare interface EmitOptions {

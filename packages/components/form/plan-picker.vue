@@ -1,7 +1,7 @@
 <template>
-  <div class="inline" v-if="drafts?.length > 0">
+  <div class="inline" v-if="data?.length > 0">
     <el-select :style="{ width: toStyleSize(width) }" v-model="selected" :placeholder="placeholder" @change="handleChange" filterable>
-      <el-option v-for="(item, key) in drafts" :key="key" :label="item.label" :value="item.value"></el-option>
+      <el-option v-for="(item, key) in data" :key="key" :label="item.label" :value="item.value"></el-option>
     </el-select>
     <el-dropdown trigger="click" @click="handleSaveData" @command="handleCommand" split-button :style="{ marginLeft: 0 }">
       <span>保存{{ name }}</span>
@@ -18,7 +18,7 @@
 <script lang="ts">
 import { Component, Prop, Provide, Emit, Model, Watch, Mixins } from 'vue-property-decorator'
 import KlBaseMixin from '../../mixins/base'
-import type { PropDataItem } from '../../../types'
+import type { PlanDataItem } from '../../../types'
 import KlFormItem from './form-item.vue'
 import { ElMessageBoxOptions, MessageBoxInputData } from 'element-ui/types/message-box'
 
@@ -28,13 +28,14 @@ import { ElMessageBoxOptions, MessageBoxInputData } from 'element-ui/types/messa
     KlFormItem
   },
   created() {
+    this.data = this.drafts.filter( v => v.associate === this.associate )
     this.selected = this.value
   },
 })
 export default class KlPlanPicker extends Mixins(KlBaseMixin) {
 
   @Prop()
-  drafts!: PropDataItem[]
+  drafts!: PlanDataItem[]
 
   @Prop({ default: '草稿' })
   name!: string
@@ -45,8 +46,19 @@ export default class KlPlanPicker extends Mixins(KlBaseMixin) {
   @Prop({ default: undefined }) 
   placeholder!: string
 
+  @Prop({ default: undefined })
+  associate!: string
+
   @Provide()
   selected: string = ''
+
+  @Provide()
+  data: PlanDataItem[] = []
+
+  @Watch('drafts')
+  onDrafts (val: PlanDataItem[]) {
+    this.data = val.filter( v => v.associate == this.associate )
+  }
 
   @Watch('value')
   onValue (val: string, oldVal: string) {
@@ -72,7 +84,7 @@ export default class KlPlanPicker extends Mixins(KlBaseMixin) {
   change (value: any) {}
 
   @Emit('update-plan')
-  updatePlan <T> (type: string, options: Partial<PropDataItem>, next: (node: T) => void) {}
+  updatePlan <T> (type: string, options: Partial<PlanDataItem>, next: (node: T) => void) {}
 
   handleChange (value: string) {
     let item = this.drafts?.find( v => v.value == value )
@@ -96,7 +108,7 @@ export default class KlPlanPicker extends Mixins(KlBaseMixin) {
 
   handleSaveData () {
     if (this.selected) {
-      this.updatePlan<PropDataItem>('update', { value: this.selected }, node => {
+      this.updatePlan<PlanDataItem>('update', { value: this.selected }, node => {
         this.selected = node?.value??''
         this.$message.success(`${this.name}-[${node.label}]已更新`)
       })
@@ -117,7 +129,7 @@ export default class KlPlanPicker extends Mixins(KlBaseMixin) {
     }
     try {
       let result = await this.$prompt('', `创建${this.name}`, options) as MessageBoxInputData
-      this.updatePlan<PropDataItem>('create', { label: result.value }, node => {
+      this.updatePlan<PlanDataItem>('create', { label: result.value }, node => {
         this.selected = node?.value??''
         this.$message.success(`${this.name}-[${node.label}]已保存`)
       })

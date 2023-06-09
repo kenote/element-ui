@@ -62,6 +62,7 @@
               :placeholder="options?.draft?.placeholder"
               :width="options?.draft?.width"
               :drafts="options?.draft?.data??[]"
+              :associate="options?.draft?.associate"
               @update-plan="handleUpdatePlan"
               @clear="handleRest"
               @change="handleSetValues"
@@ -77,7 +78,7 @@
 import { Component, Provide, Mixins, Emit } from 'vue-property-decorator'
 import KlFormMixin from '../../mixins/form'
 import { Form as ElForm } from 'element-ui'
-import type { FormItemColumn, Verify, SubmitOptions, RequestConfig, PropDataItem } from '../../../types'
+import type { FormItemColumn, Verify, SubmitOptions, RequestConfig, PlanDataItem } from '../../../types'
 import KlFormItem from './form-item.vue'
 import { parseRules, parseParams } from '../../'
 import { cloneDeep, map, set, pick, omit, merge, zipObject, unset, isEqual, omitBy, isUndefined, assign, isString } from 'lodash'
@@ -118,11 +119,11 @@ export default class KlForm extends Mixins(KlFormMixin) {
   getData<T> (request: RequestConfig | string, options: any, next: (data: T) => void) {}
 
   @Emit('update-plan')
-  updatePlan<T> (type: string, options: Partial<PropDataItem>, next: (node: T) => void) {}
+  updatePlan<T> (type: string, options: Partial<PlanDataItem>, next: (node: T) => void) {}
 
   parseRules = parseRules(this.validate)
 
-  handleUpdatePlan<T> (type: string, options: Partial<PropDataItem>, next: (node: T) => void) {
+  handleUpdatePlan<T> (type: string, options: Partial<PlanDataItem>, next: (node: T) => void) {
     this.updatePlan(type, merge(options, { content: jsYaml.dump(this.values) } ), next)
   }
 

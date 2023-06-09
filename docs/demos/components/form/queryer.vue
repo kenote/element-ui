@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator'
-import { FormItemColumn, SubmitOptions, PropDataItem } from '@/types'
+import { FormItemColumn, SubmitOptions, PlanDataItem } from '@/types'
 import * as uuid from 'uuid'
 import { merge, set, remove } from 'lodash'
 
@@ -88,7 +88,8 @@ export default class Demo extends Vue {
       }
     ],
     draft: {
-      data: []
+      data: [],
+      associate: 'query_001'
     }
   }
 
@@ -104,18 +105,18 @@ export default class Demo extends Vue {
     console.log(value)
   }
 
-  handleUpdatePlan (type: string, options: PropDataItem, next: <T>(node: T) => void) {
+  handleUpdatePlan (type: string, options: PlanDataItem, next: <T>(node: T) => void) {
     if (type == 'create') {
-      let node: PropDataItem = merge(options, { value: uuid.v4() })
+      let node: PlanDataItem = merge(options, { value: uuid.v4() })
       this.options.draft?.data?.push(node)
-      next<PropDataItem>(node)
+      next<PlanDataItem>(node)
     }
     else if (type == 'update') {
       let node = this.options.draft?.data?.find( v => v.value == options?.value )
       if (node) {
         set(node, 'content', options?.content)
         console.log(node)
-        next<PropDataItem>(node)
+        next<PlanDataItem>(node)
       }
     }
     else if (type == 'remove') {
