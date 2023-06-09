@@ -266,12 +266,9 @@ import { FilterQuery } from '@kenote/common'
 @Component<KlFormItem>({
   name: 'KlFormItem',
   created () {
-    if (['transfer'].includes(this.type)) {
-      this.propKey = 'key'
-    }
     this.propData = this.data?.map( parseProps<PropDataItem>(this.props) ) ?? []
     if (this.requestOptions) {
-      this.getData(this.requestOptions, data => {
+      this.getData<Array<Partial<PropDataItem> & { [x: string]: any }>>(this.requestOptions, null, data => {
         this.propData = data?.map( parseProps<PropDataItem>(this.props) ) ?? []
       })
     }
@@ -354,9 +351,6 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
   @Provide()
   filter: FilterQuery<any> = {}
 
-  @Provide()
-  propKey: string = 'value'
-
   @Model('update')
   value!: any
 
@@ -367,7 +361,7 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
   change (value: any, oldVal: any) {}
 
   @Emit('get-data')
-  getData (request: RequestConfig, next: (data: any) => void) {}
+  getData<T> (request: RequestConfig, options: any, next: (data: T) => void) {}
 
   @Watch('value')
   onValueChange (val: any, oldVal: any) {

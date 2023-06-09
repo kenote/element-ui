@@ -41,6 +41,9 @@
                 :props="item?.props"
                 :pickerOptions="item?.pickerOptions"
                 :readonly="item?.readonly"
+                :request-options="item?.requestOptions"
+                @get-data="getData"
+                @change="handleChange"
                 />
             </el-form-item>
           </template>
@@ -53,6 +56,16 @@
             <el-button type="primary" native-type="submit" :loading="loading"> {{ submitName }} </el-button>
             <el-button v-if="options?.reset" plain @click="handleRest">{{ options?.reset }}</el-button>
             <kl-form-expand :data="options?.emits" :env="env" :values="values" @command="command" />
+            <kl-plan-picker v-if="options?.draft" 
+              v-model="selectedDraft"
+              :name="options?.draft?.name"
+              :placeholder="options?.draft?.placeholder"
+              :width="options?.draft?.width"
+              :drafts="options?.draft?.data??[]"
+              @update-plan="handleUpdatePlan"
+              @clear="handleRest"
+              @change="handleSetValues"
+              />
           </div>
         </el-col>
       </el-row>
@@ -61,22 +74,25 @@
 </template>
 
 <script lang="ts">
-import { Component, Provide, Mixins } from 'vue-property-decorator'
+import { Component, Provide, Mixins, Emit } from 'vue-property-decorator'
 import KlFormMixin from '../../mixins/form'
 import { Form as ElForm } from 'element-ui'
-import type { FormItemColumn, Verify, SubmitOptions } from '../../../types'
+import type { FormItemColumn, Verify, SubmitOptions, RequestConfig, PropDataItem } from '../../../types'
 import KlFormItem from './form-item.vue'
 import { parseRules, parseParams } from '../../'
-import { cloneDeep, map, set, pick, omit, merge, zipObject, unset, isEqual, omitBy, isUndefined, assign } from 'lodash'
+import { cloneDeep, map, set, pick, omit, merge, zipObject, unset, isEqual, omitBy, isUndefined, assign, isString } from 'lodash'
 import { formatData } from 'parse-string'
 import ruleJudgment from 'rule-judgment'
 import KlFormExpand from './form-expand.vue'
+import KlPlanPicker from './plan-picker.vue'
+import jsYaml from 'js-yaml'
 
 @Component<KlForm>({
   name: 'KlForm',
   components: {
     KlFormItem,
-    KlFormExpand
+    KlFormExpand,
+    KlPlanPicker
   },
   created () {
     this.Rules = parseRules(this.validate)(this.rules, this)
@@ -95,7 +111,33 @@ export default class KlForm extends Mixins(KlFormMixin) {
   @Provide()
   values: Record<string, any> = {}
 
+  @Provide()
+  selectedDraft: string = ''
+
+  @Emit('get-data')
+  getData<T> (request: RequestConfig | string, options: any, next: (data: T) => void) {}
+
+  @Emit('update-plan')
+  updatePlan<T> (type: string, options: Partial<PropDataItem>, next: (node: T) => void) {}
+
   parseRules = parseRules(this.validate)
+
+  handleUpdatePlan<T> (type: string, options: Partial<PropDataItem>, next: (node: T) => void) {
+    this.updatePlan(type, merge(options, { content: jsYaml.dump(this.values) } ), next)
+  }
+
+  handleSetValues (values: any) {
+    if (isString(values)) {
+      this.values = jsYaml.load(values)
+    }
+    else {
+      this.values = values
+    }
+  }
+
+  handleChange () {
+    console.log(this.values)
+  }
 
   handleSubmit () {
     let theForm = <ElForm> this.$refs?.['theForm']
@@ -149,6 +191,7 @@ export default class KlForm extends Mixins(KlFormMixin) {
     theForm.resetFields()
     this.$emit('reset', this.DefaultValues)
     this.values = cloneDeep(this.DefaultValues)
+    this.selectedDraft = ''
   }
 }
 </script>
@@ -181,12 +224,14 @@ export default class KlForm extends Mixins(KlFormMixin) {
         width: inherit;
         margin-left: 0 !important;
 
-        .el-button:first-child {
+        &>.el-button:first-child {
           width: 120px;
+        }
+        &>:not(:first-child) {
+          margin-left: 10px;
         }
       }
       .el-dropdown {
-        margin-left: 14px;
 
         &.disabled>.el-button {
           color: #C0C4CC;

@@ -47,6 +47,7 @@ declare module '@vue/runtime-core' {
     KlFormExpand: typeof import('./../packages')['FormExpand']
     KlFormItem: typeof import('./../packages')['FormItem']
     KlLoginForm: typeof import('./../packages')['LoginForm']
+    KlPlanPicker: typeof import('./../packages')['PlanPicker']
     KlQrcode: typeof import('./../packages')['Qrcode']
     KlSidebar: typeof import('./../packages')['Sidebar']
     KlSidebarItem: typeof import('./../packages')['SidebarItem']

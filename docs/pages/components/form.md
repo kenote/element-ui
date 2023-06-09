@@ -244,13 +244,16 @@ export function validUnique (field: string, exclude: string | null, self?: Recor
       submit-name="搜 索"
       :border="true"
       :loading="loading"
+      @update-plan="handleUpdatePlan"
       />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator'
-import { FormItem, SubmitOptions } from '@kenote/element-ui'
+import { FormItem, SubmitOptions, PropDataItem } from '@kenote/element-ui'
+import * as uuid from 'uuid'
+import { merge, set, remove } from 'lodash'
 
 @Component
 export default class Demo extends Vue {
@@ -316,7 +319,10 @@ export default class Demo extends Vue {
           { key: 'select', name: '删除选中', command: 'action:removeselect', disabled: true },
         ]
       }
-    ]
+    ],
+    draft: {
+      data: []
+    }
   }
 
   handleSubmit (values: any) {
@@ -329,6 +335,26 @@ export default class Demo extends Vue {
 
   handleCommand (value: string) {
     console.log(value)
+  }
+
+  handleUpdatePlan (type: string, options: PropDataItem, next: <T>(node: T) => void) {
+    if (type == 'create') {
+      let node: PropDataItem = merge(options, { value: uuid.v4() })
+      this.options.draft?.data?.push(node)
+      next<PropDataItem>(node)
+    }
+    else if (type == 'update') {
+      let node = this.options.draft?.data?.find( v => v.value == options?.value )
+      if (node) {
+        set(node, 'content', options?.content)
+        console.log(node)
+        next<PropDataItem>(node)
+      }
+    }
+    else if (type == 'remove') {
+      remove(this.options.draft?.data??[], v => v.value == options?.value )
+      next<boolean>(true)
+    }
   }
 }
 </script>

@@ -14,7 +14,7 @@ import './plugins/element-ui'
 import './plugins/lib'
 
 import 'virtual:windi.css'
-// import 'element-ui/lib/theme-chalk/index.css'
+import 'element-ui/lib/theme-chalk/index.css'
 import '~/assets/iconfont/iconfont.css'
 import '~/assets/less/common.less'
 

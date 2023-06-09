@@ -43,6 +43,7 @@ export declare interface PropDataItem {
   label          : string
   disabled      ?: boolean
   children      ?: PropDataItem[]
+  content       ?: string
 }
 
 export declare interface FormItemColumn {
@@ -71,6 +72,14 @@ export declare interface SubmitOptions {
   next          ?: (values: any) => void
   emits         ?: EmitOptions[]
   hide          ?: boolean
+  draft         ?: PlanOptions
+}
+
+export declare interface PlanOptions {
+  name          ?: string
+  data          ?: PropDataItem[]
+  placeholder   ?: string
+  width         ?: number | string
 }
 
 export declare interface EmitOptions {
