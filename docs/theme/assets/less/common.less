@@ -435,6 +435,24 @@ body, #app {
   color: var(--kenote-popper-text);
 }
 
+
+.el-table th.el-table__cell {
+  background-color: var(--kenote-bg);
+}
+.el-table td.el-table__cell {
+  background-color: var(--kenote-bg);
+
+  // &:hover {
+  //   background-color: var(--kenote-popper-hover);
+  // }
+}
+.el-table__body tr.hover-row>td.el-table__cell {
+  background-color: var(--kenote-popper-hover) !important;
+}
+.el-table-column--selection .cell {
+  padding-left: 14px !important;
+}
+
 .searchbar-popper {
   background-color: var(--kenote-popper-bg);
   border-color: var(--kenote-popper-bc);

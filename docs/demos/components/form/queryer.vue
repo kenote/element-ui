@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator'
-import { FormItemColumn, SubmitOptions, PlanDataItem } from '@/types'
+import type { FormItemColumn, SubmitOptions, PlanDataItem } from '@/types'
 import * as uuid from 'uuid'
 import { merge, set, remove } from 'lodash'
 

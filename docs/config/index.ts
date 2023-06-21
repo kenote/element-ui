@@ -190,6 +190,18 @@ export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
         ]
       },
       {
+        key: 'data',
+        name: '数据',
+        children: [
+          {
+            key: 'table',
+            name: 'Table',
+            route: '/components/table',
+            description: '用于展示多条结构类似的数据，可对数据进行排序、筛选、对比或其他自定义操作。'
+          },
+        ]
+      },
+      {
         key: 'form',
         name: '表单',
         children: [

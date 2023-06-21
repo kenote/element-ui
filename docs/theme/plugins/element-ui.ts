@@ -17,6 +17,7 @@ import {
   FormItem,
   Input,
   InputNumber,
+  Link,
   Loading,
   Menu,
   MenuItem,
@@ -25,6 +26,7 @@ import {
   Notification,
   Option,
   OptionGroup,
+  Pagination,
   Radio,
   RadioButton,
   RadioGroup,
@@ -33,8 +35,11 @@ import {
   Slider,
   Submenu,
   Switch,
+  Table,
+  TableColumn,
   Tag,
   TimePicker,
+  Tooltip,
   Transfer
 } from 'element-ui'
 
@@ -55,10 +60,12 @@ Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Input)
 Vue.use(InputNumber)
+Vue.use(Link)
 Vue.use(Menu)
 Vue.use(MenuItem)
 Vue.use(Option)
 Vue.use(OptionGroup)
+Vue.use(Pagination)
 Vue.use(Radio)
 Vue.use(RadioButton)
 Vue.use(RadioGroup)
@@ -67,8 +74,11 @@ Vue.use(Select)
 Vue.use(Slider)
 Vue.use(Submenu)
 Vue.use(Switch)
+Vue.use(Table)
+Vue.use(TableColumn)
 Vue.use(Tag)
 Vue.use(TimePicker)
+Vue.use(Tooltip)
 Vue.use(Transfer)
 Vue.use(Loading.directive)
 

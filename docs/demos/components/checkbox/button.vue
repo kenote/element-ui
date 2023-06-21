@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { Component, Provide, Vue } from 'vue-property-decorator'
-import { PropDataItem } from '@/types'
+import type { PropDataItem } from '@/types'
 
 @Component
 export default class Demo extends Vue {
