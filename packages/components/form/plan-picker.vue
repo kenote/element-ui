@@ -109,7 +109,7 @@ export default class KlPlanPicker extends Mixins(KlBaseMixin) {
   handleSaveData () {
     if (this.selected) {
       this.updatePlan<PlanDataItem>('update', { value: this.selected }, node => {
-        this.selected = node?.value??''
+        this.selected = <string> node?.value??''
         this.$message.success(`${this.name}-[${node.label}]已更新`)
       })
     }
@@ -130,7 +130,7 @@ export default class KlPlanPicker extends Mixins(KlBaseMixin) {
     try {
       let result = await this.$prompt('', `创建${this.name}`, options) as MessageBoxInputData
       this.updatePlan<PlanDataItem>('create', { label: result.value }, node => {
-        this.selected = node?.value??''
+        this.selected = <string> node?.value??''
         this.$message.success(`${this.name}-[${node.label}]已保存`)
       })
     } catch (error) {
