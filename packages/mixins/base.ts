@@ -31,5 +31,5 @@ export default class KlBaseMixin extends Vue {
   }
 
   @Emit('command')
-  command (type: string, row: Record<string, any>, component?: Vue) {}
+  command (type: string, row: Record<string, any>, component?: Vue | Record<string, any>) {}
 }

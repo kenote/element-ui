@@ -20,7 +20,7 @@ import { Component, Prop, Provide, Emit, Model, Watch, Mixins } from 'vue-proper
 import KlBaseMixin from '../../mixins/base'
 import type { PlanDataItem } from '../../../types'
 import KlFormItem from './form-item.vue'
-import { ElMessageBoxOptions, MessageBoxInputData } from 'element-ui/types/message-box'
+import type { ElMessageBoxOptions, MessageBoxInputData } from 'element-ui/types/message-box'
 
 @Component<KlPlanPicker>({
   name: 'KlPlanPicker',

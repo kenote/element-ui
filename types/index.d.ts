@@ -39,7 +39,7 @@ export type FormItemType =
   | 'text'
 
 export declare interface PropDataItem {
-  value         ?: string
+  value         ?: string | number
   label          : string
   disabled      ?: boolean
   children      ?: PropDataItem[]
@@ -88,11 +88,60 @@ export declare interface PlanOptions {
 export declare interface EmitOptions {
   key            : string
   name           : string
-  type           : 'button' | 'dropdown' | 'link-text'
+  type           : 'button' | 'dropdown' | 'link-text' | 'select'
   style         ?: 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'
   disabled      ?: boolean | FilterQuery<any> | string
   children      ?: Omit<EmitOptions, 'type' | 'children'>[]
   command       ?: string
+  conditions    ?: FilterQuery<any> | string
+  formitem      ?: Omit<FormItemColumn, 'key' | 'type' | 'disabled' | 'conditions'>
+  dataBlock     ?: BlockOptions
+}
+
+export declare interface BlockOptions {
+  key            : string
+  query         ?: FilterQuery<any> | string
+}
+
+export declare interface TableColumn {
+  key            : string
+  name          ?: string
+  width         ?: number | string
+  minWidth      ?: number | string
+  fixed         ?: true | 'left' | 'right'
+  align         ?: 'left' | 'center' | 'right'
+  sortable      ?: boolean | 'custem'
+  format        ?: ParseData.format | ParseData.format[]
+  defaultValue  ?: string | number
+  alpha         ?: FilterQuery<any> | string
+  clipboard     ?: boolean | string
+  template      ?: string
+  click         ?: string
+  status        ?: StatusCell[]
+  dots          ?: StatusCell[]
+  emits         ?: EmitOptions[]
+}
+
+export declare interface Pagination {
+  size          ?: number
+  page          ?: number
+  sort          ?: string[]
+}
+
+export declare interface Sorter {
+  request       ?: RequestConfig
+  options       ?: SubmitOptions
+}
+
+export declare interface Selection {
+  open           : boolean
+  disabled      ?: boolean | FilterQuery<any> | string
+}
+
+export declare interface StatusCell {
+  key            : string
+  name          ?: string
+  style         ?: string
   conditions    ?: FilterQuery<any> | string
 }
 
@@ -138,5 +187,7 @@ export {
   runCommand,
   toFormatString,
   toStyleSize,
-  parseRules
+  parseRules,
+  parseParams,
+  formatString
 } from './utilities'

@@ -6,6 +6,7 @@ import type { Command, PlusKeywordsNode, PropDataItem, Verify } from '../../type
 import ruleJudgment from 'rule-judgment'
 import jsYaml from 'js-yaml'
 import nunjucks from 'nunjucks'
+import { ParseData, formatData } from 'parse-string'
 
 /**
  * 解析命令指向
@@ -405,4 +406,17 @@ export function parseParams (params: any) {
     let val = parseTemplate(str, parseData)
     return (jsYaml.safeLoad(val) || parseData) as Record<string, any>
   } 
+}
+
+/**
+ * 格式化字符串
+ * @param customize 
+ * @returns 
+ */
+export function formatString (customize: Record<string, Function>) {
+  return (value: any, format?: ParseData.format | ParseData.format[], replace?: string | number) => {
+    if (!value && value !== 0) return replace ?? value
+    if (!format) return value
+    return formatData(format, customize)(value)
+  }
 }

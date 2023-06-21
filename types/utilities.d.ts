@@ -2,6 +2,7 @@
 import { ChannelDataNode, FilterQuery } from '@kenote/common'
 import { Command, PlusKeywordsNode, PropDataItem, Verify } from './'
 import nunjucks from 'nunjucks'
+import { ParseData } from 'parse-string'
 
 /**
  * 解析命令指向
@@ -129,3 +130,11 @@ export declare function parseRules(validate: Record<string, Function>): (rules: 
  */
 export declare function parseParams(params: any): () => Record<string, any>
 export declare function parseParams(params: any): (data: Record<string, any>) => Record<string, any>
+
+/**
+ * 格式化字符串
+ * @param customize 
+ */
+export declare function formatString(customize: Record<string, Function>): (value: any) => any
+export declare function formatString(customize: Record<string, Function>): (value: any, format: ParseData.format | ParseData.format[]) => any
+export declare function formatString(customize: Record<string, Function>): (value: any, format: ParseData.format | ParseData.format[], replace: string | number) => any

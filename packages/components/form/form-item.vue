@@ -259,7 +259,7 @@ import ruleJudgment from 'rule-judgment'
 import { merge, pickBy, isString, isFunction, unset } from 'lodash'
 import KlBaseMixin from '../../mixins/base'
 import { parseProps } from '../../'
-import { DatePickerOptions } from 'element-ui/types/date-picker'
+import type { DatePickerOptions } from 'element-ui/types/date-picker'
 import jsYaml from 'js-yaml'
 import { FilterQuery } from '@kenote/common'
 
@@ -373,6 +373,7 @@ export default class KlFormItem extends Mixins(KlBaseMixin) {
   onValuesChange (val: any, oldVal: any) {
     if (val === oldVal) return
     this.update(val)
+    // if (val === this.value) return
     this.change(val, oldVal)
   }
 
