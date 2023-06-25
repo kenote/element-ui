@@ -169,6 +169,7 @@ export declare interface RequestConfig {
 }
 
 export * from './account'
+export * from './codemirror'
 export * from '../packages/components'
 export * from '../packages/mixins'
 export const Plugin: Vue.PluginObject<any>

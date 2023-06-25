@@ -1,0 +1,1 @@
+export { default as Codemirror } from './codemirror.vue'

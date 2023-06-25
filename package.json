@@ -17,6 +17,7 @@
     "@kenote/config": "latest",
     "nunjucks": "^3.2.3",
     "v-clipboard": "^2.2.3",
+    "vue-codemirror": "^4.0.6",
     "vue-fragment": "^1.5.3",
     "vue2-perfect-scrollbar": "^1.5.5"
   },
