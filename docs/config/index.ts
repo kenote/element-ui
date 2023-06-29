@@ -334,6 +334,26 @@ export const channels: ChannelDataNode<PlusKeywordsNode>[] = [
         ]
       },
       {
+        key: 'editor',
+        name: '编辑器',
+        children: [
+          {
+            key: 'code-editor',
+            name: 'CodeEditor',
+            keywords: [ 'components', '组件', 'code', 'editor', '编辑器', '代码' ],
+            route: '/components/code-editor',
+            description: '代码编辑器'
+          },
+          {
+            key: 'diff-editor',
+            name: 'DiffEditor',
+            keywords: [ 'components', '组件', 'code', 'editor', '编辑器', '代码', 'diff', '对比' ],
+            route: '/components/diff-editor',
+            description: '对比编辑器'
+          },
+        ]
+      },
+      {
         key: 'navigation',
         name: '导航',
         children: [

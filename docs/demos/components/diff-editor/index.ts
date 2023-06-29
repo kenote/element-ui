@@ -1,0 +1,1 @@
+export { default as DcDiffEditor } from './basic.vue'

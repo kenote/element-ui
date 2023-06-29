@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 import { createVuePlugin } from 'vite-plugin-vue2'
 import WindiCSS from 'vite-plugin-windicss'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import monacoEditorPlugin from 'vite-plugin-monaco-editor'
 
 const libname = 'kl-element-ui'
 
@@ -23,7 +24,10 @@ export default defineConfig({
   plugins: [
     createVuePlugin({ jsx: true }),
     WindiCSS(),
-    tsconfigPaths()
+    tsconfigPaths(),
+    monacoEditorPlugin({
+      languageWorkers: ['html', 'css', 'json', 'typescript', 'editorWorkerService']
+    })
   ],
   build: {
     outDir: 'lib',
