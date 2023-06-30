@@ -2,4 +2,4 @@
 
 ## Basic
 
-<dc-diff-editor />
+<!-- <dc-diff-editor /> -->

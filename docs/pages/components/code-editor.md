@@ -2,4 +2,4 @@
 
 ## Basic
 
-<dc-code-editor />
+<!-- <dc-code-editor /> -->
