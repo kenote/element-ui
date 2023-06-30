@@ -11,7 +11,7 @@
 import { Component, Prop, Mixins, Provide, Emit, Watch } from 'vue-property-decorator'
 import KlBaseMixin from '../../mixins/base'
 import Emitter from 'element-ui/lib/mixins/emitter'
-import { monaco } from './monaco-editor'
+import * as monaco from 'monaco-editor'
 
 @Component<KlDiffEditor>({
   name: 'KlDiffEditor',

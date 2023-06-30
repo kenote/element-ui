@@ -12,6 +12,7 @@ import './plugins/demo'
 import './plugins/element-ui'
 // 加载 Lib 组件
 import './plugins/lib'
+import './plugins/monaco-editor'
 
 import 'virtual:windi.css'
 import 'element-ui/lib/theme-chalk/index.css'

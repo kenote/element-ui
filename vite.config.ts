@@ -26,7 +26,7 @@ export default defineConfig({
     WindiCSS(),
     tsconfigPaths(),
     monacoEditorPlugin({
-      languageWorkers: ['html', 'css', 'json', 'typescript', 'editorWorkerService']
+      // languageWorkers: ['html', 'css', 'json', 'typescript', 'editorWorkerService']
     })
   ],
   build: {
@@ -45,6 +45,7 @@ export default defineConfig({
         'vue-fragment', 
         'lodash', 
         'rule-judgment', 
+        'monaco-editor',
         '@kenote/common',
         'js-yaml',
         'nunjucks'
@@ -55,14 +56,22 @@ export default defineConfig({
           vue: 'Vue',
           lodash: 'lodash',
           nunjucks: 'nunjucks',
+          ['monaco-editor']: 'monaco-editor',
           ['element-ui']: 'element-ui',
           ['vue-fragment']: 'vue-fragment',
           ['js-yaml']: 'js-yaml',
           ['rule-judgment']: 'rule-judgment',
           ['@kenote/common']: '@kenote/common'
         },
+        // manualChunks: {
+        //   jsonWorker: [`monaco-editor/esm/vs/language/json/json.worker`],
+        //   cssWorker: [`monaco-editor/esm/vs/language/css/css.worker`],
+        //   htmlWorker: [`monaco-editor/esm/vs/language/html/html.worker`],
+        //   tsWorker: [`monaco-editor/esm/vs/language/typescript/ts.worker`],
+        //   editorWorker: [`monaco-editor/esm/vs/editor/editor.worker`]
+        // }
       }
     },
-    emptyOutDir: false,
+    emptyOutDir: true,
   }
 })

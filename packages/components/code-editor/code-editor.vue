@@ -11,7 +11,7 @@
 import { Component, Prop, Mixins, Provide, Emit, Watch, Model } from 'vue-property-decorator'
 import KlBaseMixin from '../../mixins/base'
 import Emitter from 'element-ui/lib/mixins/emitter'
-import { monaco } from './monaco-editor'
+import * as monaco from 'monaco-editor'
 import { isBoolean } from 'lodash'
 
 function getMinimap (value?: monaco.editor.IEditorMinimapOptions | boolean) {
@@ -116,6 +116,10 @@ export default class KlCodeEditor extends Mixins(KlBaseMixin, Emitter) {
       language: this.language,
       model: monaco.editor.createModel(this.code, this.language),
       theme: this.theme,
+      // dimension: {
+      //   width: 300,
+      //   height: 100
+      // },
       automaticLayout: true,
       fontSize: 14,
       tabSize: this.tabSize,
